@@ -33,6 +33,7 @@ class App extends Component<object, AppState> {
     if (savedInput) {
       this.setState({ userInput: savedInput });
     }
+    this.fetchData();
   }
 
   handleButtonClick = () => {
