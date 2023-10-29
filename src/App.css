@@ -1,0 +1,21 @@
+#root {
+  max-width: 1280px;
+  padding: 1.5rem;
+  margin: auto;
+}
+
+.cards {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.header {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.header__throw {
+  top: 50%;
+}
