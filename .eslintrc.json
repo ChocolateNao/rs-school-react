@@ -31,6 +31,7 @@
     "react/prop-types": "off",
     "react/display-name": "off",
     "no-shadow": "off",
+    "no-console": ["error", { "allow": ["error"] }],
     "@typescript-eslint/no-shadow": "off",
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/ban-ts-comment": "error",
@@ -41,6 +42,7 @@
     "@typescript-eslint/no-var-requires": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
+    "react/prefer-stateless-function": "off",
     "prettier/prettier": "error",
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
   },
