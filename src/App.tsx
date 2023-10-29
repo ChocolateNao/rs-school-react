@@ -29,11 +29,10 @@ class App extends Component<object, AppState> {
   }
 
   componentDidMount() {
-    const userInput = localStorage.getItem('userInput');
-    if (userInput) {
-      this.setState({ userInput });
+    const savedInput = localStorage.getItem('userInput');
+    if (savedInput) {
+      this.setState({ userInput: savedInput });
     }
-    this.fetchData();
   }
 
   handleButtonClick = () => {
