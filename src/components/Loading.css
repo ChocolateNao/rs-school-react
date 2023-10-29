@@ -8,6 +8,10 @@
   margin: 20px auto;
 }
 
+.loading__text {
+  text-align: center;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
