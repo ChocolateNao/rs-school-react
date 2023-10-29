@@ -1,0 +1,30 @@
+.search {
+  display: flex;
+  gap: 2em;
+  justify-content: center;
+  margin-bottom: 1em;
+  border: 1px solid #646cff;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.search__input {
+  padding: 10px;
+  font-size: 1em;
+  outline: none;
+  transition: all 0.1s ease;
+  border-radius: 8px;
+  font-family: inherit;
+  min-width: 5rem;
+  max-width: 15rem;
+
+  background-color: #1a1a1a;
+}
+
+.search__input:focus {
+  outline: 1px solid #646cff;
+}
+
+.search__btn {
+  margin-left: 3rem;
+}

@@ -32,7 +32,9 @@ class Search extends Component<SearchProps, SearchState> {
           onChange={onInputChange}
           onKeyDown={this.handleKeyDown}
         />
-        <Button onClick={onButtonClick}>Search</Button>
+        <Button className="search__btn" onClick={onButtonClick}>
+          Search
+        </Button>
       </section>
     );
   }
