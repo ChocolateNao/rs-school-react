@@ -20,7 +20,7 @@ class App extends Component<object, AppState> {
   constructor(props: AppState) {
     super(props);
     this.state = {
-      userInput: '',
+      userInput: localStorage.getItem('userInput') ?? '',
       data: [],
       loading: false,
       error: null,
