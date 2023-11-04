@@ -1,20 +1,17 @@
-import React, { Component, MouseEvent, ReactNode } from 'react';
+import { MouseEvent, ReactNode, ButtonHTMLAttributes } from 'react';
 import './Button.css';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick: (event: MouseEvent<HTMLButtonElement>) => void;
   children: ReactNode;
 }
 
-class Button extends Component<ButtonProps> {
-  render() {
-    const { onClick, children } = this.props;
-    return (
-      <button type="button" onClick={onClick}>
-        {children}
-      </button>
-    );
-  }
+function Button({ onClick, children }: ButtonProps) {
+  return (
+    <button className="btn" type="button" onClick={onClick}>
+      {children}
+    </button>
+  );
 }
 
 export default Button;
