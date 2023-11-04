@@ -1,5 +1,6 @@
-import React, { Component, ErrorInfo } from 'react';
+import { Component, ErrorInfo } from 'react';
 import './ErrorBoundary.css';
+import Button from './Button';
 
 interface ErrorBoundaryProps {
   children: React.ReactNode;
@@ -34,9 +35,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
             You can try to refresh the page or simply click the button here that
             will do it for you.
           </p>
-          <a className="errorboundary__refresh" href="/">
-            <button type="button">Reload Page</button>
-          </a>
+          <Button onClick={() => window.location.reload()}>Reload page</Button>
         </div>
       );
     }
