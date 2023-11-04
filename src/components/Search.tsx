@@ -1,5 +1,7 @@
-import React, { Component, ChangeEvent } from 'react';
+import { ChangeEvent, KeyboardEvent } from 'react';
+
 import Button from './Button';
+
 import './Search.css';
 
 interface SearchProps {
@@ -8,36 +10,28 @@ interface SearchProps {
   onButtonClick: () => void;
 }
 
-interface SearchState {
-  dummyError: boolean;
-}
-
-class Search extends Component<SearchProps, SearchState> {
-  handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    const { onButtonClick } = this.props;
+function Search({ userInput, onInputChange, onButtonClick }: SearchProps) {
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       onButtonClick();
     }
   };
 
-  render() {
-    const { userInput, onInputChange, onButtonClick } = this.props;
-    return (
-      <section className="search">
-        <input
-          className="search__input"
-          type="text"
-          placeholder="Type a character name"
-          value={userInput}
-          onChange={onInputChange}
-          onKeyDown={this.handleKeyDown}
-        />
-        <Button className="search__btn" onClick={onButtonClick}>
-          Search
-        </Button>
-      </section>
-    );
-  }
+  return (
+    <section className="search">
+      <input
+        className="search__input"
+        type="text"
+        placeholder="Type a character name"
+        value={userInput}
+        onChange={onInputChange}
+        onKeyDown={handleKeyDown}
+      />
+      <Button className="search__btn" onClick={onButtonClick}>
+        Search
+      </Button>
+    </section>
+  );
 }
 
 export default Search;
