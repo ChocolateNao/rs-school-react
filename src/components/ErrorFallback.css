@@ -6,11 +6,8 @@
   text-align: center;
 }
 
-.errorboundary__header {
-  margin: 0;
-}
-
 .errorboundary__text {
+  margin: 1rem 0;
   font-size: 1.2rem;
 }
 

@@ -1,8 +1,6 @@
 import { Component, ErrorInfo } from 'react';
 
-import Button from './Button';
-
-import './ErrorBoundary.css';
+import ErrorFallback from './ErrorFallback';
 
 interface ErrorBoundaryProps {
   children: React.ReactNode;
@@ -28,18 +26,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     const { children } = this.props;
 
     if (hasError) {
-      return (
-        <div className="errorboundary">
-          <h1 className="errorboundary__header">
-            Oopsie Woopsie! Something went wrong.
-          </h1>
-          <p className="errorboundary__text">
-            You can try to refresh the page or simply click the button here that
-            will do it for you.
-          </p>
-          <Button onClick={() => window.location.reload()}>Reload page</Button>
-        </div>
-      );
+      return <ErrorFallback />;
     }
 
     return children;
