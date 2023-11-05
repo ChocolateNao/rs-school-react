@@ -80,11 +80,11 @@ function Main() {
       <Header>
         <Search onSearch={updateAnimeList} />
       </Header>
-      {error && <div>{error}</div>}
       {paginationData && (
         <Pagination totalPages={paginationData.last_visible_page} />
       )}
       {loading && <Loading />}
+      {error && <div>{error}</div>}
       {data && <AnimeList data={data} />}
       <Outlet />
     </main>
