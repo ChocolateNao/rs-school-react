@@ -1,0 +1,8 @@
+.header {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.header__throw {
+  top: 50%;
+}

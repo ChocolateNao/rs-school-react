@@ -3,12 +3,3 @@
   padding: 1.5rem;
   margin: auto;
 }
-
-.header {
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-.header__throw {
-  top: 50%;
-}
