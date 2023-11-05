@@ -7,14 +7,25 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
+import AnimeDetails from './components/AnimeDetails';
 import ErrorFallback from './components/ErrorFallback';
+import NotFound from './components/NotFound';
 import App from './App';
 
 import './index.css';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />} errorElement={<ErrorFallback />} />
+    <Route>
+      <Route path="/" element={<App />} errorElement={<ErrorFallback />}>
+        <Route
+          path=":id"
+          element={<AnimeDetails />}
+          errorElement={<ErrorFallback />}
+        />
+      </Route>
+      <Route path="*" element={<NotFound />} />
+    </Route>
   )
 );
 
