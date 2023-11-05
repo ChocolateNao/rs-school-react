@@ -1,4 +1,4 @@
-export interface Pagination {
+export interface PaginationData {
   last_visible_page: number;
   has_next_page: boolean;
   current_page: number;
