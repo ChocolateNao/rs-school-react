@@ -42,7 +42,7 @@ function Main() {
     ) => {
       setLoading(true);
       fetch(
-        `https://api.jikan.moe/v4/anime${query ? `?q=${query.trim()}` : ''}${
+        `https://api.jikan.moe/v4/anime${query ? `?q=${query.trim()}` : '?q='}${
           page ? `&page=${page}` : ''
         }${limit ? `&limit=${limit}` : ''}`
       )
