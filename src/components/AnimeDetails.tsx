@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { fetchAnimeById } from '../api/fetchCalls';
+import fetchAnimeById from '../api/fetchCalls';
 import { IAnimeDetails } from '../resources/Anime.interface';
 
 import Button from './Button';
@@ -38,13 +38,15 @@ function AnimeDetails() {
   }, [updateAnime]);
 
   return (
-    <div
-      className="modal__overlay"
-      onClick={close}
-      onKeyDown={close}
-      role="textbox"
-      tabIndex={0}
-    >
+    <>
+      <div
+        aria-label="close-details"
+        className="modal__overlay"
+        onClick={close}
+        onKeyDown={close}
+        role="textbox"
+        tabIndex={0}
+      />
       <div className="modal__container">
         <div className="loader" />
         {isLoading && <Loading />}
@@ -61,9 +63,11 @@ function AnimeDetails() {
           <p>Type: {animeData?.type}</p>
           <p>Status: {animeData?.airing ? 'Airing' : 'Finished Airing'}</p>
           <p>MAL Score: {animeData?.score}</p>
+          <p>Year: {animeData?.year}</p>
+          <p>Synopsis: {animeData?.synopsis}</p>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
