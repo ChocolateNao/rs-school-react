@@ -24,4 +24,5 @@ export interface IAnimeDetails extends Anime {
   year: number;
   rating: string;
   genres: [name: string];
+  synopsis: string;
 }
