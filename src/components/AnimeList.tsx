@@ -4,15 +4,15 @@ import AnimeCard from './AnimeCard';
 
 import './AnimeList.css';
 
-interface CharacterListProps {
+interface AnimeListProps {
   data: Anime[];
 }
 
-function AnimeList({ data }: CharacterListProps) {
+function AnimeList({ data }: AnimeListProps) {
   return (
     <section className="cards">
       {data.map((item: Anime) => (
-        <AnimeCard key={item.mal_id} character={item} />
+        <AnimeCard key={item.mal_id} anime={item} />
       ))}
     </section>
   );

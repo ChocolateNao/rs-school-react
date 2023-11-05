@@ -19,7 +19,7 @@ export interface Anime {
   };
 }
 
-export interface AnimeDetails extends Anime {
+export interface IAnimeDetails extends Anime {
   status: string;
   year: number;
   rating: string;
