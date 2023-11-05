@@ -4,7 +4,7 @@ import { Outlet, useSearchParams } from 'react-router-dom';
 import { Anime } from '../resources/Anime.interface';
 import { PaginationData } from '../resources/Pagination.interface';
 
-import CharacterList from './AnimeList';
+import AnimeList from './AnimeList';
 import Header from './Header';
 import Loading from './Loading';
 import Pagination from './Pagination';
@@ -23,37 +23,6 @@ function Main() {
   const page = searchParams.get('page');
   const per = searchParams.get('per');
 
-  const fetchData = (
-    query: string | null,
-    page?: string | null,
-    limit?: string | null
-  ) => {
-    setLoading(true);
-    fetch(
-      `https://api.jikan.moe/v4/anime?page=${page}${
-        query ? `&q=${query.trim()}` : ''
-      }${limit ? `&limit=${limit}` : ''}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        if (!data.data || data.data.length === 0) {
-          setError('Nothing was found that satisfies your desires, master.');
-        }
-        if (data.error) {
-          setLoading(false);
-          setError(data.error);
-          return;
-        }
-        setData(data.data);
-        setPaginationData(data.pagination);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setLoading(false);
-        setError(error.message);
-      });
-  };
-
   const setInitialParams = useCallback(() => {
     setSearchParams({
       page: page || '1',
@@ -65,6 +34,38 @@ function Main() {
     if (!page || !per) {
       setInitialParams();
     }
+
+    const fetchData = (
+      query: string | null,
+      page?: string | null,
+      limit?: string | null
+    ) => {
+      setLoading(true);
+      fetch(
+        `https://api.jikan.moe/v4/anime${query ? `?q=${query.trim()}` : ''}${
+          page ? `&page=${page}` : ''
+        }${limit ? `&limit=${limit}` : ''}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          if (!data.data || data.data.length === 0) {
+            setError('Nothing was found that satisfies your desires, master.');
+          }
+          if (data.error) {
+            setLoading(false);
+            setData([]);
+            setError(data.error);
+            return;
+          }
+          setData(data.data);
+          setPaginationData(data.pagination);
+          setLoading(false);
+        })
+        .catch((error) => {
+          setLoading(false);
+          setError(error.message);
+        });
+    };
     fetchData(search, page, per);
   }, [page, per, search, setInitialParams]);
 
@@ -84,7 +85,7 @@ function Main() {
         <Pagination totalPages={paginationData.last_visible_page} />
       )}
       {loading && <Loading />}
-      {data && <CharacterList data={data} />}
+      {data && <AnimeList data={data} />}
       <Outlet />
     </main>
   );
