@@ -83,7 +83,7 @@ function Pagination({ totalPages }: PaginationProps) {
         </Button>
       </div>
       <div className="pagination__pagesize">
-        Items on page:
+        Items on page (1-25):
         <div>
           <input
             className="pagination__pagesize_input"
