@@ -18,6 +18,7 @@ function Header({ children }: HeaderProps) {
 
   return (
     <header className="header">
+      <h1 className="header__title">Anime search</h1>
       {children}
       <Button className="header__throw" onClick={handleErrorThrow}>
         Throw error
