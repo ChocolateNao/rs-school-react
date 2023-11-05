@@ -1,0 +1,38 @@
+.pagination {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: inherit;
+  border-radius: 5px;
+  border: 2px solid #646cff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+.pagination__navigation {
+  display: flex;
+  align-items: center;
+}
+
+.pagination__page-info {
+  font-size: 16px;
+  margin: 0 20px;
+}
+
+.pagination__pagesize {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pagination__pagesize_input {
+  padding: 8px;
+  background-color: #1a1a1a;
+  border: 1px solid #1a1a1a;
+  border-radius: 8px;
+  margin-right: 10px;
+  font-size: 16px;
+  width: 150px;
+}
