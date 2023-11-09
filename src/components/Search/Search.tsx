@@ -1,7 +1,7 @@
 import { ChangeEvent, KeyboardEvent, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import Button from './Button';
+import Button from '../Button/Button';
 
 import './Search.css';
 

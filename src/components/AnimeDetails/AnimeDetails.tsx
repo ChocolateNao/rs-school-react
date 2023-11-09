@@ -1,11 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import fetchAnimeById from '../api/fetchCalls';
-import { IAnimeDetails } from '../resources/AnimeDetails.interface';
-
-import Button from './Button';
-import Loading from './Loading';
+import fetchAnimeById from '../../api/fetchCalls';
+import { IAnimeDetails } from '../../resources/AnimeDetails.interface';
+import Button from '../Button/Button';
+import Loading from '../Loading/Loading';
 
 import './AnimeDetails.css';
 

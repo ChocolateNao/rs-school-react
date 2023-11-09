@@ -7,9 +7,9 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
-import AnimeDetails from './components/AnimeDetails';
-import ErrorFallback from './components/ErrorFallback';
-import NotFound from './components/NotFound';
+import AnimeDetails from './components/AnimeDetails/AnimeDetails';
+import ErrorFallback from './components/ErrorFallback/ErrorFallback';
+import NotFound from './pages/NotFound/NotFound';
 import App from './App';
 
 import './index.css';

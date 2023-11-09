@@ -1,14 +1,13 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Outlet, useSearchParams } from 'react-router-dom';
 
-import { IAnime } from '../resources/Anime.interface';
-import { PaginationData } from '../resources/Pagination.interface';
-
-import AnimeList from './AnimeList';
-import Header from './Header';
-import Loading from './Loading';
-import Pagination from './Pagination';
-import Search from './Search';
+import AnimeList from '../../components/AnimeList/AnimeList';
+import Header from '../../components/Header/Header';
+import Loading from '../../components/Loading/Loading';
+import Pagination from '../../components/Pagination/Pagination';
+import Search from '../../components/Search/Search';
+import { IAnime } from '../../resources/Anime.interface';
+import { PaginationData } from '../../resources/Pagination.interface';
 
 function Main() {
   const [searchParams, setSearchParams] = useSearchParams();

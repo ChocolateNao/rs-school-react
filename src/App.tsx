@@ -1,5 +1,5 @@
-import ErrorBoundary from './components/ErrorBoundary';
-import Main from './components/Main';
+import Main from './pages/Main/Main';
+import ErrorBoundary from './shared/ErrorBoundary';
 
 import './App.css';
 

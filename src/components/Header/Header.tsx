@@ -1,7 +1,7 @@
 import { ReactNode, useState } from 'react';
 
-import Button from './Button';
-import DummyError from './DummyError';
+import Button from '../Button/Button';
+import DummyError from '../DummyError/DummyError';
 
 import './Header.css';
 
