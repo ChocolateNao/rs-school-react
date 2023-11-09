@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import fetchAnimeById from '../api/fetchCalls';
-import { IAnimeDetails } from '../resources/Anime.interface';
+import { IAnimeDetails } from '../resources/AnimeDetails.interface';
 
 import Button from './Button';
 import Loading from './Loading';

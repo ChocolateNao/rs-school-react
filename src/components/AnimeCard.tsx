@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 
-import { Anime } from '../resources/Anime.interface';
+import { IAnime } from '../resources/Anime.interface';
 
 import './AnimeCard.css';
 
 interface AnimeCardProps {
-  anime: Anime;
+  anime: IAnime;
 }
 
 function AnimeCard({ anime }: AnimeCardProps) {

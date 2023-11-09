@@ -1,17 +1,17 @@
-import { Anime } from '../resources/Anime.interface';
+import { IAnime } from '../resources/Anime.interface';
 
 import AnimeCard from './AnimeCard';
 
 import './AnimeList.css';
 
 interface AnimeListProps {
-  data: Anime[];
+  data: IAnime[];
 }
 
 function AnimeList({ data }: AnimeListProps) {
   return (
     <section className="cards">
-      {data.map((item: Anime) => (
+      {data.map((item: IAnime) => (
         <AnimeCard key={item.mal_id} anime={item} />
       ))}
     </section>

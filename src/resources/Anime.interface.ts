@@ -1,4 +1,4 @@
-export interface Anime {
+export interface IAnime {
   mal_id: number;
   url: string;
   title: string;
@@ -17,12 +17,4 @@ export interface Anime {
       large_image_url: string;
     };
   };
-}
-
-export interface IAnimeDetails extends Anime {
-  status: string;
-  year: number;
-  rating: string;
-  genres: [name: string];
-  synopsis: string;
 }

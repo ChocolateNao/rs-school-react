@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Outlet, useSearchParams } from 'react-router-dom';
 
-import { Anime } from '../resources/Anime.interface';
+import { IAnime } from '../resources/Anime.interface';
 import { PaginationData } from '../resources/Pagination.interface';
 
 import AnimeList from './AnimeList';
@@ -13,7 +13,7 @@ import Search from './Search';
 function Main() {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [data, setData] = useState<Anime[]>([]);
+  const [data, setData] = useState<IAnime[]>([]);
   const [paginationData, setPaginationData] = useState<PaginationData>();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
