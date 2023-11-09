@@ -1,6 +1,6 @@
 import { Component, ErrorInfo } from 'react';
 
-import ErrorFallback from '../components/ErrorFallback/ErrorFallback';
+import ErrorFallback from '../../components/ErrorFallback/ErrorFallback';
 
 interface ErrorBoundaryProps {
   children: React.ReactNode;

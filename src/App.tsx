@@ -1,5 +1,5 @@
 import Main from './pages/Main/Main';
-import ErrorBoundary from './shared/ErrorBoundary';
+import ErrorBoundary from './shared/ErrorBoundary/ErrorBoundary';
 
 import './App.css';
 
