@@ -13,3 +13,7 @@ yarn.lock
 
 # Ignore README
 README.md
+
+# jest
+jest.config.*
+/__mocks__/*
