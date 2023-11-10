@@ -1,4 +1,4 @@
 {
-  "^(?!.*\\/__mocks__\\/).*\\.(js|jsx|ts|tsx)$": "npx eslint --max-warnings 0",
+  "*.{js,jsx,ts,tsx}": "npx eslint --max-warnings 0",
   "*{.json,html,css}": "npx prettier --check"
 }
