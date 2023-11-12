@@ -1,9 +1,9 @@
-import { IAnimeDetails } from '../resources/Anime.interface';
+import { IAnimeDetails } from '../resources/AnimeDetails.interface';
 
-const fetchAnimeById = async (id: string): Promise<IAnimeDetails> => {
-  const apiUrl = `https://api.jikan.moe/v4/anime/${id}`;
+const apiUrl = `https://api.jikan.moe/v4/anime`;
 
-  return fetch(apiUrl)
+export const fetchAnimeById = async (id: string): Promise<IAnimeDetails> => {
+  return fetch(`${apiUrl}/${id}`)
     .then((response) => {
       if (response.status === 200) {
         return response.json();
@@ -19,4 +19,26 @@ const fetchAnimeById = async (id: string): Promise<IAnimeDetails> => {
     });
 };
 
-export default fetchAnimeById;
+export const fetchAnimeList = async (
+  query: string | null,
+  page?: string | null,
+  limit?: string | null
+) => {
+  return fetch(
+    `${apiUrl}${query ? `?q=${query.trim()}` : '?q='}${
+      page ? `&page=${page}` : ''
+    }${limit ? `&limit=${limit}` : ''}`
+  )
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      }
+      throw new Error('Failed to fetch anime list');
+    })
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => {
+      throw new Error(error.message);
+    });
+};

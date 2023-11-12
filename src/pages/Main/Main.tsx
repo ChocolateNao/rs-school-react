@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Outlet, useSearchParams } from 'react-router-dom';
 
+import { fetchAnimeList } from '../../api/fetchCalls';
 import AnimeList from '../../components/AnimeList/AnimeList';
 import Header from '../../components/Header/Header';
 import Loading from '../../components/Loading/Loading';
@@ -30,42 +31,22 @@ function Main() {
   }, [page, per, setSearchParams]);
 
   const updateAnimeList = useCallback(() => {
+    setLoading(true);
+    setError('');
     if (!page || !per) {
       setInitialParams();
     }
 
-    const fetchData = (
-      query: string | null,
-      page?: string | null,
-      limit?: string | null
-    ) => {
-      setLoading(true);
-      fetch(
-        `https://api.jikan.moe/v4/anime${query ? `?q=${query.trim()}` : '?q='}${
-          page ? `&page=${page}` : ''
-        }${limit ? `&limit=${limit}` : ''}`
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          if (!data.data || data.data.length === 0) {
-            setError('Nothing was found that satisfies your desires, master.');
-          }
-          if (data.error) {
-            setLoading(false);
-            setData([]);
-            setError(data.error);
-            return;
-          }
-          setData(data.data);
-          setPaginationData(data.pagination);
-          setLoading(false);
-        })
-        .catch((error) => {
-          setLoading(false);
-          setError(error.message);
-        });
-    };
-    fetchData(search, page, per);
+    fetchAnimeList(search, page, per).then((data) => {
+      if (data.error) {
+        setLoading(false);
+        setData([]);
+        setError(data.error);
+      }
+      setData(data.data);
+      setPaginationData(data.pagination);
+    });
+    setLoading(false);
   }, [page, per, search, setInitialParams]);
 
   useEffect(() => {
