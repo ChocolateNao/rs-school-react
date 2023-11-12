@@ -1,30 +1,54 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
 
-const SearchContext = createContext<string | undefined>(undefined);
-interface SearchProviderProps {
+import { IAnime } from '../../resources/Anime.interface';
+import { IAnimeDetails } from '../../resources/AnimeDetails.interface';
+
+interface SearchContextProps {
   children: ReactNode;
 }
 
-function SearchProvider({ children }: SearchProviderProps) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+interface SearchContextValue {
+  userInput: string;
+  setUserInput: (value: string) => void;
+  animeList: IAnime[];
+  setAnimeList: (results: IAnime[]) => void;
+  animeDetails: IAnimeDetails | undefined;
+  setAnimeDetails: (results: IAnimeDetails) => void;
+}
+
+const SearchContext = createContext<SearchContextValue | undefined>(undefined);
+
+export default function SearchProvider({ children }: SearchContextProps) {
   const [userInput, setUserInput] = useState<string>(() => {
     const localInput = localStorage.getItem('userInput');
     return localInput || '';
   });
+  const [animeList, setAnimeList] = useState<IAnime[]>([]);
+  const [animeDetails, setAnimeDetails] = useState<IAnimeDetails | undefined>(
+    undefined
+  );
 
   return (
-    <SearchContext.Provider value={userInput}>
+    <SearchContext.Provider
+      // eslint-disable-next-line react/jsx-no-constructed-context-values
+      value={{
+        userInput,
+        setUserInput,
+        animeList,
+        setAnimeList,
+        animeDetails,
+        setAnimeDetails,
+      }}
+    >
       {children}
     </SearchContext.Provider>
   );
 }
 
-export const useSearch = () => {
+export const useSearchContext = (): SearchContextValue => {
   const context = useContext(SearchContext);
-  if (context === undefined) {
-    throw new Error('useSearch must be used within a SearchProvider');
+  if (!context) {
+    throw new Error('useSearchContext must be used within a SearchProvider');
   }
   return context;
 };
-
-export default SearchProvider;
