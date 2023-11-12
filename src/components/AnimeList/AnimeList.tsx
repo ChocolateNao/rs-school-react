@@ -10,9 +10,11 @@ interface AnimeListProps {
 function AnimeList({ data }: AnimeListProps) {
   return (
     <section className="cards">
-      {data.map((item: IAnime) => (
-        <AnimeCard key={item.mal_id} anime={item} />
-      ))}
+      {data.length === 0 ? (
+        <div>Nothing was found that satisfies your desires, master</div>
+      ) : (
+        data.map((item: IAnime) => <AnimeCard key={item.mal_id} anime={item} />)
+      )}
     </section>
   );
 }
