@@ -1,4 +1,5 @@
 import { ReactNode, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import Button from '../Button/Button';
 import DummyError from '../DummyError/DummyError';
@@ -18,7 +19,9 @@ function Header({ children }: HeaderProps) {
 
   return (
     <header className="header">
-      <h1 className="header__title">Anime search</h1>
+      <Link to="/">
+        <h1 className="header__title">Anime search</h1>
+      </Link>
       {children}
       <Button className="header__throw" onClick={handleErrorThrow}>
         Throw error
