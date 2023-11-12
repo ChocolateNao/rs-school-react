@@ -7,13 +7,13 @@ import Header from '../../components/Header/Header';
 import Loading from '../../components/Loading/Loading';
 import Pagination from '../../components/Pagination/Pagination';
 import Search from '../../components/Search/Search';
-import { IAnime } from '../../resources/Anime.interface';
 import { PaginationData } from '../../resources/Pagination.interface';
+import { useSearchContext } from '../../shared/context/SearchContext';
 
 function Main() {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [data, setData] = useState<IAnime[]>([]);
+  const { animeList, setAnimeList } = useSearchContext();
   const [paginationData, setPaginationData] = useState<PaginationData>();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -40,20 +40,20 @@ function Main() {
     fetchAnimeList(search, page, per).then((data) => {
       if (data.error) {
         setLoading(false);
-        setData([]);
+        setAnimeList([]);
         setError(data.error);
       }
-      setData(data.data);
+      setAnimeList(data.data);
       setPaginationData(data.pagination);
     });
     setLoading(false);
-  }, [page, per, search, setInitialParams]);
+  }, [page, per, search, setAnimeList, setInitialParams]);
 
   useEffect(() => {
     setError(null);
-    setData([]);
+    setAnimeList([]);
     updateAnimeList();
-  }, [updateAnimeList]);
+  }, [setAnimeList, updateAnimeList]);
 
   return (
     <main>
@@ -65,7 +65,7 @@ function Main() {
       )}
       {loading && <Loading />}
       {error && <div>{error}</div>}
-      {data && <AnimeList data={data} />}
+      {animeList && <AnimeList data={animeList} />}
       <Outlet />
     </main>
   );

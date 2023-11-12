@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { fetchAnimeById } from '../../api/fetchCalls';
-import { IAnimeDetails } from '../../resources/AnimeDetails.interface';
+import { useSearchContext } from '../../shared/context/SearchContext';
 import Button from '../Button/Button';
 import Loading from '../Loading/Loading';
 
@@ -11,20 +11,19 @@ import './AnimeDetails.css';
 function AnimeDetails() {
   const navigate = useNavigate();
   const { pathname, search } = useLocation();
-  const [animeData, setAnimeData] = useState<IAnimeDetails | undefined>(
-    undefined
-  );
+  const { animeDetails, setAnimeDetails } = useSearchContext();
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const updateAnime = useCallback(() => {
     setIsLoading(true);
 
     fetchAnimeById(pathname.slice(1)).then((data) => {
-      setAnimeData(data);
+      setAnimeDetails(data);
     });
 
     setIsLoading(false);
-  }, [pathname]);
+  }, [pathname, setAnimeDetails]);
 
   const close = () => {
     navigate({
@@ -55,16 +54,16 @@ function AnimeDetails() {
         </Button>
         <img
           className="modal__img"
-          src={animeData?.images.webp.large_image_url}
-          alt={animeData?.title}
+          src={animeDetails?.images.webp.large_image_url}
+          alt={animeDetails?.title}
         />
         <div className="modal__description">
-          <p>{animeData?.title}</p>
-          <p>Type: {animeData?.type}</p>
-          <p>Status: {animeData?.airing ? 'Airing' : 'Finished Airing'}</p>
-          <p>MAL Score: {animeData?.score}</p>
-          <p>Year: {animeData?.year}</p>
-          <p>Synopsis: {animeData?.synopsis}</p>
+          <p>{animeDetails?.title}</p>
+          <p>Type: {animeDetails?.type}</p>
+          <p>Status: {animeDetails?.airing ? 'Airing' : 'Finished Airing'}</p>
+          <p>MAL Score: {animeDetails?.score}</p>
+          <p>Year: {animeDetails?.year}</p>
+          <p>Synopsis: {animeDetails?.synopsis}</p>
         </div>
       </div>
     </>

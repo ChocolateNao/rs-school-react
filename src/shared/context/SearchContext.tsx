@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import { IAnime } from '../../resources/Anime.interface';
 import { IAnimeDetails } from '../../resources/AnimeDetails.interface';
@@ -19,9 +20,18 @@ interface SearchContextValue {
 const SearchContext = createContext<SearchContextValue | undefined>(undefined);
 
 export default function SearchProvider({ children }: SearchContextProps) {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [userInput, setUserInput] = useState<string>(() => {
-    const localInput = localStorage.getItem('userInput');
-    return localInput || '';
+    const paramInput = searchParams.get('search');
+    if (!paramInput) {
+      const localInput = localStorage.getItem('userInput');
+      if (localInput) {
+        setSearchParams(localInput);
+        return localInput;
+      }
+    }
+    return paramInput || '';
   });
   const [animeList, setAnimeList] = useState<IAnime[]>([]);
   const [animeDetails, setAnimeDetails] = useState<IAnimeDetails | undefined>(

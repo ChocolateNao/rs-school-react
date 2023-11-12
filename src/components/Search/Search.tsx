@@ -1,6 +1,7 @@
-import { ChangeEvent, KeyboardEvent, useState } from 'react';
+import { ChangeEvent, KeyboardEvent } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
+import { useSearchContext } from '../../shared/context/SearchContext';
 import Button from '../Button/Button';
 
 import './Search.css';
@@ -10,12 +11,9 @@ interface SearchProps {
 }
 
 function Search({ onSearch }: SearchProps) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [searchParams, setSearchParams] = useSearchParams();
-  const [userInput, setUserInput] = useState<string>(() => {
-    const paramInput = searchParams.get('search');
-    const localInput = localStorage.getItem('userInput');
-    return paramInput || localInput || '';
-  });
+  const { userInput, setUserInput } = useSearchContext();
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setUserInput(event.target.value);
