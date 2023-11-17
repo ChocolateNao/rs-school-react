@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { IAnime } from '../../resources/Anime.interface';
+import { IAnime } from 'resources/Anime.interface';
 
 import './AnimeCard.css';
 

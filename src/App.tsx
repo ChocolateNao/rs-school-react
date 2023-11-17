@@ -1,6 +1,6 @@
-import Main from './pages/Main/Main';
-import SearchProvider from './shared/context/SearchContext';
-import ErrorBoundary from './shared/ErrorBoundary/ErrorBoundary';
+import SearchProvider from 'context/SearchContext';
+import Main from 'pages/Main';
+import ErrorBoundary from 'shared/ErrorBoundary';
 
 import './App.css';
 

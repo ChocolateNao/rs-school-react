@@ -1,5 +1,5 @@
-import { IAnime } from '../../resources/Anime.interface';
-import AnimeCard from '../AnimeCard/AnimeCard';
+import AnimeCard from 'components/AnimeCard';
+import { IAnime } from 'resources/Anime.interface';
 
 import './AnimeList.css';
 

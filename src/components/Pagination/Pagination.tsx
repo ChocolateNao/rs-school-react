@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import Button from '../../shared/ui/Button/Button';
+import Button from 'ui/Button';
 
 import './Pagination.css';
 

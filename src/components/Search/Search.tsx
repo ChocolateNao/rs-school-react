@@ -1,8 +1,8 @@
 import { ChangeEvent, KeyboardEvent } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { useSearchContext } from '../../shared/context/SearchContext';
-import Button from '../../shared/ui/Button/Button';
+import { useSearchContext } from 'context/SearchContext';
+import Button from 'ui/Button';
 
 import './Search.css';
 

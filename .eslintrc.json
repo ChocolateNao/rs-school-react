@@ -67,8 +67,10 @@
             "groups": [
               // Packages `react` related packages come first.
               ["^react", "^@?\\w"],
-              // Internal packages.
-              ["^(@|components)(/.*|$)"],
+              // Internal packages (ALIASES ARE HERE).
+              [
+                "^(components|ui|context|api|pages|assets|resources|shared)(/.*|$)"
+              ],
               // Side effect imports.
               ["^\\u0000"],
               // Parent imports. Put `..` last.

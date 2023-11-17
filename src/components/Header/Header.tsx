@@ -1,8 +1,8 @@
 import { ReactNode, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import Button from '../../shared/ui/Button/Button';
-import DummyError from '../DummyError/DummyError';
+import DummyError from 'components/DummyError';
+import Button from 'ui/Button';
 
 import './Header.css';
 

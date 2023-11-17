@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Outlet, useSearchParams } from 'react-router-dom';
 
-import { fetchAnimeList } from '../../api/fetchCalls';
-import AnimeList from '../../components/AnimeList/AnimeList';
-import Header from '../../components/Header/Header';
-import Pagination from '../../components/Pagination/Pagination';
-import Search from '../../components/Search/Search';
-import { PaginationData } from '../../resources/Pagination.interface';
-import { useSearchContext } from '../../shared/context/SearchContext';
-import Loading from '../../shared/ui/Loading/Loading';
+import { fetchAnimeList } from 'api/fetchCalls';
+import AnimeList from 'components/AnimeList';
+import Header from 'components/Header';
+import Pagination from 'components/Pagination';
+import Search from 'components/Search';
+import { useSearchContext } from 'context/SearchContext';
+import { PaginationData } from 'resources/Pagination.interface';
+import Loading from 'ui/Loading';
 
 function Main() {
   const [searchParams, setSearchParams] = useSearchParams();
