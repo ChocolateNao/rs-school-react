@@ -2,7 +2,7 @@ import { ChangeEvent, KeyboardEvent } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { useSearchContext } from '../../shared/context/SearchContext';
-import Button from '../Button/Button';
+import Button from '../../shared/ui/Button/Button';
 
 import './Search.css';
 

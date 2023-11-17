@@ -4,11 +4,11 @@ import { Outlet, useSearchParams } from 'react-router-dom';
 import { fetchAnimeList } from '../../api/fetchCalls';
 import AnimeList from '../../components/AnimeList/AnimeList';
 import Header from '../../components/Header/Header';
-import Loading from '../../components/Loading/Loading';
 import Pagination from '../../components/Pagination/Pagination';
 import Search from '../../components/Search/Search';
 import { PaginationData } from '../../resources/Pagination.interface';
 import { useSearchContext } from '../../shared/context/SearchContext';
+import Loading from '../../shared/ui/Loading/Loading';
 
 function Main() {
   const [searchParams, setSearchParams] = useSearchParams();

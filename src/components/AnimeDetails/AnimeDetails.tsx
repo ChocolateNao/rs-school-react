@@ -3,8 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { fetchAnimeById } from '../../api/fetchCalls';
 import { useSearchContext } from '../../shared/context/SearchContext';
-import Button from '../Button/Button';
-import Loading from '../Loading/Loading';
+import Button from '../../shared/ui/Button/Button';
+import Loading from '../../shared/ui/Loading/Loading';
 
 import './AnimeDetails.css';
 
