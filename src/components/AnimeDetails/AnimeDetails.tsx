@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { fetchAnimeById } from 'api/fetchCalls';
+import { fetchAnimeById } from 'api/animeService';
 import { useSearchContext } from 'context/SearchContext';
 import Button from 'ui/Button';
 import Loading from 'ui/Loading';

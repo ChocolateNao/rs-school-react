@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Outlet, useSearchParams } from 'react-router-dom';
 
-import { fetchAnimeList } from 'api/fetchCalls';
+import { fetchAnimeList } from 'api/animeService';
 import AnimeList from 'components/AnimeList';
 import Header from 'components/Header';
 import Pagination from 'components/Pagination';
