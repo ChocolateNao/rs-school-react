@@ -1,7 +1,7 @@
-# Week 2
+# Week 3
 
-## React. Routing
+## React. Tests/Context API
 
-This branch contents a project assignment for week 2 Rolling Scopes School React 2023 Q4 course.
+This branch contents a project assignment for week 3 Rolling Scopes School React 2023 Q4 course.
 
 ![week2](https://i.imgur.com/hGATH7P.png)
