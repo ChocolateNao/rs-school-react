@@ -6,7 +6,7 @@
   border: 0.15rem solid;
   border-radius: 1rem;
   border-color: #646cff;
-  max-heght: var(--card-img-size);
+  max-height: var(--card-img-size);
   max-width: var(--card-img-size);
   min-height: 600px;
 }
