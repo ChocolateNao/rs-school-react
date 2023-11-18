@@ -1,6 +1,6 @@
-import './Loading.css';
+import './Loader.css';
 
-function Loading() {
+function Loader() {
   return (
     <div className="loading">
       <div className="loading__spinner" />
@@ -9,4 +9,4 @@ function Loading() {
   );
 }
 
-export default Loading;
+export default Loader;

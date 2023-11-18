@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { fetchAnimeById } from 'api/animeService';
 import { useSearchContext } from 'context/SearchContext';
 import Button from 'ui/Button';
-import Loading from 'ui/Loading';
+import Loader from 'ui/Loader';
 
 import './AnimeDetails.css';
 
@@ -48,7 +48,7 @@ function AnimeDetails() {
       />
       <div className="modal__container">
         <div className="loader" />
-        {isLoading && <Loading />}
+        {isLoading && <Loader />}
         <Button onClick={close} className="modal__close">
           Close
         </Button>

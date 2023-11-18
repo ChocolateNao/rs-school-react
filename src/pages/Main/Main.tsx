@@ -8,7 +8,7 @@ import Pagination from 'components/Pagination';
 import Search from 'components/Search';
 import { useSearchContext } from 'context/SearchContext';
 import { PaginationData } from 'resources/Pagination.interface';
-import Loading from 'ui/Loading';
+import Loader from 'ui/Loader';
 
 function Main() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -63,7 +63,7 @@ function Main() {
       {paginationData && (
         <Pagination totalPages={paginationData.last_visible_page} />
       )}
-      {loading && <Loading />}
+      {loading && <Loader />}
       {error && <div>{error}</div>}
       {animeList && <AnimeList data={animeList} />}
       <Outlet />
