@@ -2,7 +2,7 @@ import { IAnimeDetails } from '../resources/AnimeDetails.interface';
 
 const apiUrl = `https://api.jikan.moe/v4/anime`;
 
-export const fetchAnimeById = async (id: string): Promise<IAnimeDetails> => {
+const fetchAnimeById = async (id: string): Promise<IAnimeDetails> => {
   return fetch(`${apiUrl}/${id}`)
     .then((response) => {
       if (response.status === 200) {
@@ -19,7 +19,7 @@ export const fetchAnimeById = async (id: string): Promise<IAnimeDetails> => {
     });
 };
 
-export const fetchAnimeList = async (
+const fetchAnimeList = async (
   query: string | null,
   page?: string | null,
   limit?: string | null
@@ -42,3 +42,5 @@ export const fetchAnimeList = async (
       throw new Error(error.message);
     });
 };
+
+export { fetchAnimeById, fetchAnimeList };

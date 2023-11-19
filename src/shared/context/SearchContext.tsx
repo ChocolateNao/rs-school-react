@@ -17,7 +17,9 @@ interface SearchContextValue {
   setAnimeDetails: (results: IAnimeDetails) => void;
 }
 
-const SearchContext = createContext<SearchContextValue | undefined>(undefined);
+export const SearchContext = createContext<SearchContextValue | undefined>(
+  undefined
+);
 
 export default function SearchProvider({ children }: SearchContextProps) {
   const [searchParams, setSearchParams] = useSearchParams();
