@@ -11,8 +11,7 @@ interface SearchProps {
 }
 
 function Search({ onSearch }: SearchProps) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
   const { userInput, setUserInput } = useSearchContext();
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
