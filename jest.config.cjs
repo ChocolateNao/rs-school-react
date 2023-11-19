@@ -24,7 +24,8 @@ module.exports = {
     'src/**/*.ts',
     'src/**/*.tsx',
     '!src/main.tsx',
-    '!src/tests/*.ts',
+    '!src/tests/mock/*.ts',
+    'src/shared/store/*.ts'
   ],
   coverageReporters: ['text'],
 };

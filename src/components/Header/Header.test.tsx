@@ -5,7 +5,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import ErrorBoundary from 'shared/ErrorBoundary';
 import store from 'shared/store';
 
-import Header from './Header';
+import Header from '.';
 
 describe('Header Component', () => {
   it('renders header with title', () => {

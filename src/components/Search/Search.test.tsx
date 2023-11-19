@@ -4,7 +4,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 
 import store from 'shared/store';
 
-import Search from './Search';
+import Search from '.';
 
 const onSearchMock = jest.fn();
 
