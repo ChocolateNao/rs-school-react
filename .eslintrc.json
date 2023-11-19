@@ -54,6 +54,10 @@
     "import/first": "error",
     "import/newline-after-import": "error",
     "import/no-duplicates": "error",
+    "no-param-reassign": [
+      "error",
+      { "props": true, "ignorePropertyModificationsFor": ["state"] }
+    ],
     "prettier/prettier": "error"
   },
   "overrides": [
