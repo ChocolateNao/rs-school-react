@@ -10,7 +10,10 @@ interface PaginationProps {
 }
 
 function Pagination({ totalPages }: PaginationProps) {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams([
+    ['page', '1'],
+    ['per', '25'],
+  ]);
 
   const initialPageSizeNum = Number(searchParams.get('per'));
   const [pageSize, setPageSize] = useState<number>(initialPageSizeNum || 25);
@@ -88,7 +91,7 @@ function Pagination({ totalPages }: PaginationProps) {
           <input
             className="pagination__pagesize_input"
             onChange={onInputChange}
-            placeholder="Search for product name"
+            placeholder="1 - 25"
             type="text"
             value={pageSize}
           />
