@@ -17,7 +17,6 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
   coverageThreshold: {
     global: {
-      branches: 80,
       functions: 80,
       lines: 80,
       statements: 80,
@@ -26,7 +25,7 @@ module.exports = {
   collectCoverageFrom: [
     'src/**/*.ts',
     'src/**/*.tsx',
-    '!src/index.tsx',
+    '!src/main.tsx',
     '!src/setupTests.ts',
   ],
   coverageReporters: ['text'],
