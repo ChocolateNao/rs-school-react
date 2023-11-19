@@ -1,13 +1,12 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 
-import DummyError from '../../components/DummyError/DummyError';
-import ErrorFallback from '../../components/ErrorFallback/ErrorFallback';
+import DummyError from 'components/DummyError';
+import ErrorFallback from 'components/ErrorFallback';
 
 import ErrorBoundary from './ErrorBoundary';
 
-jest.mock('../../components/ErrorFallback/ErrorFallback', () =>
-  jest.fn(() => null)
+jest.mock('components/ErrorFallback', () =>
+  jest.fn(() => 'Mock ErrorFallback')
 );
 
 describe('ErrorBoundary Component', () => {
@@ -18,11 +17,11 @@ describe('ErrorBoundary Component', () => {
   it('renders children when there is no error', () => {
     const { getByText } = render(
       <ErrorBoundary>
-        <div>Child Component</div>
+        <div>Mock child</div>
       </ErrorBoundary>
     );
 
-    expect(getByText('Child Component')).toBeInTheDocument();
+    expect(getByText('Mock child')).toBeInTheDocument();
     expect(ErrorFallback).not.toHaveBeenCalled();
   });
 
@@ -32,18 +31,13 @@ describe('ErrorBoundary Component', () => {
 
     const { getByText } = render(
       <ErrorBoundary>
-        <div>Child Component</div>
-      </ErrorBoundary>
-    );
-
-    render(
-      <ErrorBoundary>
+        <div>Mock child</div>
         <DummyError />
       </ErrorBoundary>
     );
 
-    expect(getByText(/Something went wrong/i)).toBeInTheDocument();
     expect(ErrorFallback).toHaveBeenCalled();
+    expect(getByText(/Mock ErrorFallback/i)).toBeInTheDocument();
 
     jest.restoreAllMocks();
   });
