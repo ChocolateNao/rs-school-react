@@ -1,0 +1,12 @@
+.header {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.header__title {
+  margin: 0 0 1.5rem 0;
+}
+
+.header__throw {
+  top: 50%;
+}
