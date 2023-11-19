@@ -1,7 +1,7 @@
-# Week 3
+# Week 4
 
-## React. Tests/Context API
+## React. Redux. RTK
 
-This branch contents a project assignment for week 3 Rolling Scopes School React 2023 Q4 course.
+This branch contents a project assignment for week 4 Rolling Scopes School React 2023 Q4 course.
 
-![week2](https://i.imgur.com/hGATH7P.png)
+![week4](https://i.imgur.com/hGATH7P.png)
