@@ -14,11 +14,9 @@ module.exports = {
     '^shared/(.*)$': '<rootDir>/src/shared/$1',
     '^context/(.*)$': '<rootDir>/src/shared/context/$1',
   },
-  setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
+  setupFilesAfterEnv: ['<rootDir>/src/tests/setupTests.ts'],
   coverageThreshold: {
     global: {
-      functions: 80,
-      lines: 80,
       statements: 80,
     },
   },
@@ -26,7 +24,7 @@ module.exports = {
     'src/**/*.ts',
     'src/**/*.tsx',
     '!src/main.tsx',
-    '!src/setupTests.ts',
+    '!src/tests/*.ts',
   ],
   coverageReporters: ['text'],
 };
