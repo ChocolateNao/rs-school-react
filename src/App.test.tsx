@@ -1,13 +1,9 @@
 import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 
-import SearchProvider from 'shared/context/SearchContext';
+import App from './App';
 
-import { mockAnimeList } from '../../tests/mock/animeServiceMock';
-
-import Main from '.';
-
-const mockData = mockAnimeList;
+const mockData = { mal_id: 1, title: 'Cowboy Bebop' };
 global.fetch = jest.fn().mockImplementation(() =>
   Promise.resolve({
     status: 200,
@@ -15,15 +11,13 @@ global.fetch = jest.fn().mockImplementation(() =>
   })
 );
 
-describe('Main Page', () => {
-  it('renders Main page', () => {
+describe('App Component', () => {
+  it('renders App component', () => {
     jest.spyOn(console, 'error').mockImplementation(() => {});
     jest.spyOn(console, 'warn').mockImplementation(() => {});
     const { getByText } = render(
       <MemoryRouter>
-        <SearchProvider>
-          <Main />
-        </SearchProvider>
+        <App />
       </MemoryRouter>
     );
 
