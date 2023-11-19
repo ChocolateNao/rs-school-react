@@ -1,8 +1,9 @@
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import SearchProvider from 'shared/context/SearchContext';
 import ErrorBoundary from 'shared/ErrorBoundary';
+import store from 'shared/store';
 
 import Header from './Header';
 
@@ -10,11 +11,11 @@ describe('Header Component', () => {
   it('renders header with title', () => {
     render(
       <BrowserRouter>
-        <SearchProvider>
+        <Provider store={store}>
           <Header>
             <div>Mock child</div>
           </Header>
-        </SearchProvider>
+        </Provider>
       </BrowserRouter>
     );
 
@@ -26,11 +27,11 @@ describe('Header Component', () => {
   it('renders "throw error" button', () => {
     render(
       <BrowserRouter>
-        <SearchProvider>
+        <Provider store={store}>
           <Header>
             <div>Mock child</div>
           </Header>
-        </SearchProvider>
+        </Provider>
       </BrowserRouter>
     );
 
@@ -44,11 +45,11 @@ describe('Header Component', () => {
     const { getByText } = render(
       <BrowserRouter>
         <ErrorBoundary>
-          <SearchProvider>
+          <Provider store={store}>
             <Header>
               <div>Mock child</div>
             </Header>
-          </SearchProvider>
+          </Provider>
         </ErrorBoundary>
       </BrowserRouter>
     );

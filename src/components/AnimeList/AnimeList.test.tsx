@@ -1,8 +1,9 @@
+import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 
 import { IAnime } from 'resources/Anime.interface';
-import SearchProvider from 'shared/context/SearchContext';
+import store from 'shared/store';
 
 import { mockAnimeList } from '../../tests/mock/animeServiceMock';
 
@@ -12,9 +13,9 @@ describe('AnimeList Component', () => {
   it('renders specified number of cards', () => {
     const { container } = render(
       <MemoryRouter>
-        <SearchProvider>
+        <Provider store={store}>
           <AnimeList data={mockAnimeList} />
-        </SearchProvider>
+        </Provider>
       </MemoryRouter>
     );
     const cards = container.querySelectorAll('.cards .card');
@@ -27,9 +28,9 @@ describe('AnimeList Component', () => {
 
     const { getByText } = render(
       <MemoryRouter>
-        <SearchProvider>
+        <Provider store={store}>
           <AnimeList data={animeData} />
-        </SearchProvider>
+        </Provider>
       </MemoryRouter>
     );
     const messageElement = getByText(

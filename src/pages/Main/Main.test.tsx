@@ -1,7 +1,8 @@
+import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 
-import SearchProvider from 'shared/context/SearchContext';
+import store from 'shared/store';
 
 import { mockAnimeList } from '../../tests/mock/animeServiceMock';
 
@@ -21,9 +22,9 @@ describe('Main Page', () => {
     jest.spyOn(console, 'warn').mockImplementation(() => {});
     const { getByText } = render(
       <MemoryRouter>
-        <SearchProvider>
+        <Provider store={store}>
           <Main />
-        </SearchProvider>
+        </Provider>
       </MemoryRouter>
     );
 

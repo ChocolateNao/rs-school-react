@@ -1,8 +1,9 @@
+import { Provider } from 'react-redux';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 
 import AnimeCard from 'components/AnimeCard';
-import SearchProvider from 'context/SearchContext';
+import store from 'shared/store';
 
 import { mockAnimeCard } from '../../tests/mock/animeServiceMock';
 
@@ -14,13 +15,13 @@ describe('AnimeDetails Component', () => {
   it('renders AnimeDetails component', () => {
     render(
       <MemoryRouter initialEntries={['/1']}>
-        <SearchProvider>
+        <Provider store={store}>
           <Routes>
             <Route path="/" element={<AnimeCard anime={mockAnimeCard} />}>
               <Route path="/1" element={<AnimeDetails />} />
             </Route>
           </Routes>
-        </SearchProvider>
+        </Provider>
       </MemoryRouter>
     );
 

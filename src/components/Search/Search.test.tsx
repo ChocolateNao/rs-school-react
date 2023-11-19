@@ -1,7 +1,8 @@
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import SearchProvider from 'shared/context/SearchContext';
+import store from 'shared/store';
 
 import Search from './Search';
 
@@ -10,9 +11,9 @@ const onSearchMock = jest.fn();
 function SearchWrapper() {
   return (
     <BrowserRouter>
-      <SearchProvider>
-        <Search onSearch={onSearchMock} />
-      </SearchProvider>
+      <Provider store={store}>
+        <Search />
+      </Provider>
     </BrowserRouter>
   );
 }
