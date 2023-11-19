@@ -1,71 +1,51 @@
-import { useCallback, useEffect, useState } from 'react';
 import { Outlet, useSearchParams } from 'react-router-dom';
 
-import { fetchAnimeList } from 'api/animeService';
 import AnimeList from 'components/AnimeList';
 import Header from 'components/Header';
 import Pagination from 'components/Pagination';
 import Search from 'components/Search';
-import { useSearchContext } from 'context/SearchContext';
-import { PaginationData } from 'resources/Pagination.interface';
+import { useFetchAnimeList } from 'shared/store/jikanApi';
+import { setAnimeList, setPagination } from 'shared/store/slice';
+import { useAppDispatch, useAppSelector } from 'shared/store/types';
 import Loader from 'ui/Loader';
 
 function Main() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const dispatch = useAppDispatch();
+  const { errorMessage, pagination, animeList } = useAppSelector(
+    (state) => state.storeReducer
+  );
 
-  const { animeList, setAnimeList } = useSearchContext();
-  const [paginationData, setPaginationData] = useState<PaginationData>();
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  const [searchParams] = useSearchParams();
 
   const search =
     searchParams.get('search') || localStorage.getItem('userInput');
   const page = searchParams.get('page');
   const per = searchParams.get('per');
 
-  const setInitialParams = useCallback(() => {
-    setSearchParams({
-      page: page || '1',
-      per: per || '25',
-    });
-  }, [page, per, setSearchParams]);
+  const querystring = `${search ? `?q=${search.trim()}` : '?q='}${
+    page ? `&page=${page}` : ''
+  }${per ? `&limit=${per}` : ''}`;
 
-  const updateAnimeList = useCallback(() => {
-    setLoading(true);
-    setError('');
-    if (!page || !per) {
-      setInitialParams();
-    }
+  const { data, isLoading } = useFetchAnimeList(querystring);
 
-    fetchAnimeList(search, page, per).then((data) => {
-      if (data.error) {
-        setLoading(false);
-        setAnimeList([]);
-        setError(data.error);
-      }
-      setAnimeList(data.data);
-      setPaginationData(data.pagination);
-    });
-    setLoading(false);
-  }, [page, per, search, setAnimeList, setInitialParams]);
-
-  useEffect(() => {
-    setError(null);
-    setAnimeList([]);
-    updateAnimeList();
-  }, [setAnimeList, updateAnimeList]);
+  dispatch(setAnimeList(data?.data));
+  dispatch(setPagination(data?.pagination));
 
   return (
     <main>
       <Header>
-        <Search onSearch={updateAnimeList} />
+        <Search />
       </Header>
-      {paginationData && (
-        <Pagination totalPages={paginationData.last_visible_page} />
+      {pagination && (
+        <Pagination
+          totalPages={
+            pagination.last_visible_page ? pagination.last_visible_page : 1
+          }
+        />
       )}
-      {loading && <Loader />}
-      {error && <div>{error}</div>}
-      {animeList && <AnimeList data={animeList} />}
+      {isLoading && <Loader />}
+      {errorMessage && <div>{errorMessage}</div>}
+      {data && <AnimeList data={animeList} />}
       <Outlet />
     </main>
   );

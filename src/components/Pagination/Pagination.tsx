@@ -51,7 +51,7 @@ function Pagination({ totalPages }: PaginationProps) {
   };
 
   const handlePageSizeClick = () => {
-    if (pageSize < 1 || !pageSize) {
+    if (pageSize < 1 || !pageSize || pageSize > 25) {
       setPageSize(25);
     }
 

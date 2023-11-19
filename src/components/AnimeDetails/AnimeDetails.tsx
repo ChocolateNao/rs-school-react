@@ -1,29 +1,23 @@
-import { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { fetchAnimeById } from 'api/animeService';
-import { useSearchContext } from 'context/SearchContext';
+import { useFetchAnimeById } from 'shared/store/jikanApi';
+import { setAnimeDetails } from 'shared/store/slice';
+import { useAppDispatch, useAppSelector } from 'shared/store/types';
 import Button from 'ui/Button';
 import Loader from 'ui/Loader';
 
 import './AnimeDetails.css';
 
 function AnimeDetails() {
-  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { animeDetails } = useAppSelector((state) => state.storeReducer);
   const { pathname, search } = useLocation();
-  const { animeDetails, setAnimeDetails } = useSearchContext();
+  const animeId = pathname.slice(1);
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { data, isLoading } = useFetchAnimeById(animeId);
+  dispatch(setAnimeDetails(data?.data));
 
-  const updateAnime = useCallback(() => {
-    setIsLoading(true);
-
-    fetchAnimeById(pathname.slice(1)).then((data) => {
-      setAnimeDetails(data);
-    });
-
-    setIsLoading(false);
-  }, [pathname, setAnimeDetails]);
+  const navigate = useNavigate();
 
   const close = () => {
     navigate({
@@ -31,10 +25,6 @@ function AnimeDetails() {
       search,
     });
   };
-
-  useEffect(() => {
-    updateAnime();
-  }, [updateAnime]);
 
   return (
     <>

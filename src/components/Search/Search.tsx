@@ -1,25 +1,22 @@
 import { ChangeEvent, KeyboardEvent } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { useSearchContext } from 'context/SearchContext';
+import { setUserInput } from 'shared/store/slice';
+import { useAppDispatch, useAppSelector } from 'shared/store/types';
 import Button from 'ui/Button';
 
 import './Search.css';
 
-interface SearchProps {
-  onSearch: (input: string) => void;
-}
-
-function Search({ onSearch }: SearchProps) {
+function Search() {
   const [, setSearchParams] = useSearchParams();
-  const { userInput, setUserInput } = useSearchContext();
+  const dispatch = useAppDispatch();
+  const { userInput } = useAppSelector((state) => state.storeReducer);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setUserInput(event.target.value);
+    dispatch(setUserInput(event.target.value));
   };
 
   const handleSearch = () => {
-    onSearch(userInput);
     if (localStorage.getItem('userInput') !== userInput) {
       localStorage.setItem('userInput', userInput);
     }
