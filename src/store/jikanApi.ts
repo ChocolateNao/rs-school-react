@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { HYDRATE } from 'next-redux-wrapper';
 
 import { IAnime } from 'models/Anime.interface';
 import { IAnimeDetails } from 'models/AnimeDetails.interface';
@@ -10,6 +11,12 @@ export const jikanApi = createApi({
   reducerPath: 'jikanApi',
   keepUnusedDataFor: process.env.NODE_ENV === 'test' ? 0 : 60,
   baseQuery: fetchBaseQuery({ baseUrl: `${API_URL}` }),
+  // eslint-disable-next-line consistent-return
+  extractRehydrationInfo(action, { reducerPath }) {
+    if (action.type === HYDRATE) {
+      return action.payload[reducerPath];
+    }
+  },
   endpoints: (builder) => ({
     fetchAnimeList: builder.query<
       { data: IAnime[]; pagination: IPaginationData },
