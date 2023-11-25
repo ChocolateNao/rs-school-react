@@ -1,7 +1,7 @@
-# Week 4
+# Week 5
 
-## React. Redux. RTK
+## React. Next.js
 
-This branch contents a project assignment for week 4 Rolling Scopes School React 2023 Q4 course.
+This branch contents a project assignment for week 45 Rolling Scopes School React 2023 Q4 course.
 
-![week4](https://i.imgur.com/hGATH7P.png)
+![week5](https://i.imgur.com/hGATH7P.png)
