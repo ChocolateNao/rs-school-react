@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom';
+import Image from 'next/image';
+import Link from 'next/link';
 
-import { IAnime } from 'resources/Anime.interface';
+import { IAnime } from 'models/Anime.interface';
 
 import './AnimeCard.css';
 
@@ -13,9 +14,15 @@ function AnimeCard({ anime }: AnimeCardProps) {
   const { mal_id, title, type, score, airing, images } = anime;
 
   return (
-    <Link to={mal_id.toString()}>
+    <Link href={mal_id.toString()}>
       <div className="card">
-        <img src={images.webp.image_url} alt={title} className="card__image" />
+        <Image
+          src={images.webp.image_url}
+          alt={title}
+          className="card__image"
+          width={100}
+          height={100}
+        />
         <div className="card__description">
           <b>Name:</b> <p>{title}</p>
           <b>Status:</b> <p>{airing ? 'Airing' : 'Completed'}</p>

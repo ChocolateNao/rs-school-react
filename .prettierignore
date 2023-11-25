@@ -15,5 +15,8 @@ yarn.lock
 README.md
 
 # jest
+/src/tests/mock/*.js
+
+# config files
 jest.config.*
-/__mocks__/*
+next.config.*

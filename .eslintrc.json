@@ -5,6 +5,7 @@
     "airbnb-typescript",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
+    "next/core-web-vitals",
     "prettier",
     "plugin:prettier/recommended"
   ],
@@ -15,7 +16,7 @@
     },
     "ecmaVersion": "latest",
     "sourceType": "module",
-    "project": ["./tsconfig.json", "./tsconfig.node.json"]
+    "project": ["./tsconfig.json"]
   },
   "env": {
     "browser": true,
@@ -38,7 +39,7 @@
     "react/display-name": "off",
     "@typescript-eslint/no-shadow": "off",
     "no-shadow": "off",
-    "no-console": ["error", { "allow": ["error"] }],
+    "no-console": ["warn", { "allow": ["error"] }],
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/ban-ts-comment": "error",
     "@typescript-eslint/no-non-null-assertion": "off",
@@ -61,19 +62,18 @@
     "prettier/prettier": "error"
   },
   "overrides": [
-    // override "simple-import-sort" config
     {
       "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
       "rules": {
         "simple-import-sort/imports": [
-          "error",
+          "warn",
           {
             "groups": [
               // Packages `react` related packages come first.
               ["^react", "^@?\\w"],
               // Internal packages (ALIASES ARE HERE).
               [
-                "^(components|ui|context|api|pages|assets|resources|shared)(/.*|$)"
+                "^(components|ui|context|api|pages|assets|resources|shared|models|styles)(/.*|$)"
               ],
               // Side effect imports.
               ["^\\u0000"],

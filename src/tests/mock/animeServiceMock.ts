@@ -1,5 +1,5 @@
-import { IAnime } from 'resources/Anime.interface';
-import { IAnimeDetails } from 'resources/AnimeDetails.interface';
+import { IAnime } from 'models/Anime.interface';
+import { IAnimeDetails } from 'models/AnimeDetails.interface';
 
 const mockAnimeCard: IAnime = {
   mal_id: 1,
@@ -10,14 +10,14 @@ const mockAnimeCard: IAnime = {
   airing: false,
   images: {
     jpg: {
-      image_url: 'test-image-url-jpg',
-      small_image_url: 'test-small-image-url-jpg',
-      large_image_url: 'test-large-image-url-jpg',
+      image_url: '/test-image-url-jpg',
+      small_image_url: '/test-small-image-url-jpg',
+      large_image_url: '/test-large-image-url-jpg',
     },
     webp: {
-      image_url: 'test-image-url-webp',
-      small_image_url: 'test-small-image-url-webp',
-      large_image_url: 'test-large-image-url-webp',
+      image_url: '/test-image-url-webp',
+      small_image_url: '/test-small-image-url-webp',
+      large_image_url: '/test-large-image-url-webp',
     },
   },
 };
@@ -31,14 +31,14 @@ const mockAnimeDetails: IAnimeDetails = {
   airing: false,
   images: {
     jpg: {
-      image_url: 'test-image-url-jpg',
-      small_image_url: 'test-small-image-url-jpg',
-      large_image_url: 'test-large-image-url-jpg',
+      image_url: '/test-image-url-jpg',
+      small_image_url: '/test-small-image-url-jpg',
+      large_image_url: '/test-large-image-url-jpg',
     },
     webp: {
-      image_url: 'test-image-url-webp',
-      small_image_url: 'test-small-image-url-webp',
-      large_image_url: 'test-large-image-url-webp',
+      image_url: '/test-image-url-webp',
+      small_image_url: '/test-small-image-url-webp',
+      large_image_url: '/test-large-image-url-webp',
     },
   },
   status: 'Airing',
@@ -58,14 +58,14 @@ const mockAnimeList: IAnime[] = [
     airing: false,
     images: {
       jpg: {
-        image_url: 'test-image-url-jpg',
-        small_image_url: 'test-small-image-url-jpg',
-        large_image_url: 'test-large-image-url-jpg',
+        image_url: '/test-image-url-jpg',
+        small_image_url: '/test-small-image-url-jpg',
+        large_image_url: '/test-large-image-url-jpg',
       },
       webp: {
-        image_url: 'test-image-url-webp',
-        small_image_url: 'test-small-image-url-webp',
-        large_image_url: 'test-large-image-url-webp',
+        image_url: '/test-image-url-webp',
+        small_image_url: '/test-small-image-url-webp',
+        large_image_url: '/test-large-image-url-webp',
       },
     },
   },
@@ -78,14 +78,14 @@ const mockAnimeList: IAnime[] = [
     airing: false,
     images: {
       jpg: {
-        image_url: 'test-image-url-jpg',
-        small_image_url: 'test-small-image-url-jpg',
-        large_image_url: 'test-large-image-url-jpg',
+        image_url: '/test-image-url-jpg',
+        small_image_url: '/test-small-image-url-jpg',
+        large_image_url: '/test-large-image-url-jpg',
       },
       webp: {
-        image_url: 'test-image-url-webp',
-        small_image_url: 'test-small-image-url-webp',
-        large_image_url: 'test-large-image-url-webp',
+        image_url: '/test-image-url-webp',
+        small_image_url: '/test-small-image-url-webp',
+        large_image_url: '/test-large-image-url-webp',
       },
     },
   },
@@ -98,14 +98,14 @@ const mockAnimeList: IAnime[] = [
     airing: false,
     images: {
       jpg: {
-        image_url: 'test-image-url-jpg',
-        small_image_url: 'test-small-image-url-jpg',
-        large_image_url: 'test-large-image-url-jpg',
+        image_url: '/test-image-url-jpg',
+        small_image_url: '/test-small-image-url-jpg',
+        large_image_url: '/test-large-image-url-jpg',
       },
       webp: {
-        image_url: 'test-image-url-webp',
-        small_image_url: 'test-small-image-url-webp',
-        large_image_url: 'test-large-image-url-webp',
+        image_url: '/test-image-url-webp',
+        small_image_url: '/test-small-image-url-webp',
+        large_image_url: '/test-large-image-url-webp',
       },
     },
   },

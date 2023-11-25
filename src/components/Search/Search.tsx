@@ -1,8 +1,7 @@
 import { ChangeEvent, KeyboardEvent } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { setUserInput } from 'store/slice';
+import { useAppDispatch, useAppSelector } from 'store/types';
 
-import { setUserInput } from 'shared/store/slice';
-import { useAppDispatch, useAppSelector } from 'shared/store/types';
 import Button from 'ui/Button';
 
 import './Search.css';

@@ -1,5 +1,5 @@
 import { ReactNode, useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 import DummyError from 'components/DummyError';
 import Button from 'ui/Button';
@@ -19,7 +19,7 @@ function Header({ children }: HeaderProps) {
 
   return (
     <header className="header">
-      <Link to="/">
+      <Link href="/">
         <h1 className="header__title">Anime search</h1>
       </Link>
       {children}

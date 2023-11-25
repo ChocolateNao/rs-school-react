@@ -12,5 +12,8 @@ package-lock.json
 yarn.lock
 
 # jest
+/src/tests/mock/*.js
+
+# config files
 jest.config.*
-/__mocks__/*
+next.config.*
