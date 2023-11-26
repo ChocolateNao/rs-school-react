@@ -7,7 +7,7 @@ import { IAnimeDetails } from 'models/AnimeDetails.interface';
 import { IPaginationData } from 'models/Pagination.interface';
 import Layout from 'pages/layout';
 
-interface DetailsProps {
+export interface DetailsProps {
   animeList: { data: IAnime[]; pagination: IPaginationData };
   animeDetails: { data: IAnimeDetails };
 }
@@ -22,7 +22,7 @@ export default function Details({ animeList, animeDetails }: DetailsProps) {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async (context) => {
-    const { page, per, search, id } = context.query;
+    const { page, per, search, id } = context.query || {};
 
     const querystring = `${search ? `?q=${String(search).trim()}` : '?q='}${
       page ? `&page=${page}` : ''

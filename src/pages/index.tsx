@@ -6,7 +6,7 @@ import { IPaginationData } from 'models/Pagination.interface';
 
 import Layout from './layout';
 
-interface HomeProps {
+export interface HomeProps {
   animeList: { data: IAnime[]; pagination: IPaginationData };
 }
 
@@ -16,7 +16,7 @@ export default function Home({ animeList }: HomeProps) {
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async (context) => {
-    const { page, per, search } = context.query;
+    const { page, per, search } = context.query || {};
     const querystring = `${search ? `?q=${String(search).trim()}` : '?q='}${
       page ? `&page=${page}` : ''
     }${per ? `&limit=${per}` : ''}`;

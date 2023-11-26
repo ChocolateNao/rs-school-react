@@ -4,7 +4,7 @@ import { createWrapper } from 'next-redux-wrapper';
 import { jikanApi } from './jikanApi';
 import storeReducer from './slice';
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   storeReducer,
   [jikanApi.reducerPath]: jikanApi.reducer,
 });
