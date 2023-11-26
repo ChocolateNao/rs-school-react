@@ -1,5 +1,6 @@
 import { IAnime } from 'models/Anime.interface';
 import { IAnimeDetails } from 'models/AnimeDetails.interface';
+import { IPaginationData } from 'models/Pagination.interface';
 
 const mockAnimeCard: IAnime = {
   mal_id: 1,
@@ -111,6 +112,17 @@ const mockAnimeList: IAnime[] = [
   },
 ];
 
+const mockPaginationData: IPaginationData = {
+  last_visible_page: 1,
+  has_next_page: false,
+  current_page: 1,
+  items: {
+    count: 3,
+    total: 3,
+    per_page: 25,
+  },
+};
+
 const fetchAnimeListMock = jest.fn().mockResolvedValue(mockAnimeList);
 
 const fetchAnimeDetailsMock = jest.fn().mockResolvedValue(mockAnimeDetails);
@@ -121,4 +133,5 @@ export {
   mockAnimeCard,
   mockAnimeDetails,
   mockAnimeList,
+  mockPaginationData,
 };
