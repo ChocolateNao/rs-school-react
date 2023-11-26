@@ -4,7 +4,7 @@ import Link from 'next/link';
 import DummyError from 'components/DummyError';
 import Button from 'ui/Button';
 
-import './Header.css';
+import './Header.module.css';
 
 interface HeaderProps {
   children: ReactNode;

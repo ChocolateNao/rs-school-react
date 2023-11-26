@@ -1,7 +1,7 @@
 import AnimeCard from 'components/AnimeCard';
-import { IAnime } from 'resources/Anime.interface';
+import { IAnime } from 'models/Anime.interface';
 
-import './AnimeList.css';
+import './AnimeList.module.css';
 
 interface AnimeListProps {
   data: IAnime[];

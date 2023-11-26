@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 function NotFound() {
   return (
     <div className="not-found">
       <h1>404 - Not Found</h1>
-      <Link to="/">Return to home page</Link>
+      <Link href="/">Return to home page</Link>
     </div>
   );
 }

@@ -1,24 +1,36 @@
-import { ChangeEvent, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { ChangeEvent, useEffect, useState } from 'react';
+import useUpdateQueryParams from 'hooks/useUpdateQueryParams';
+import { useRouter } from 'next/router';
 
 import Button from 'ui/Button';
 
-import './Pagination.css';
+import './Pagination.module.css';
 
 interface PaginationProps {
   totalPages: number;
 }
 
 function Pagination({ totalPages }: PaginationProps) {
-  const [searchParams, setSearchParams] = useSearchParams([
-    ['page', '1'],
-    ['per', '25'],
-  ]);
+  const router = useRouter();
+  const { updateQueryParams } = useUpdateQueryParams();
 
-  const initialPageSizeNum = Number(searchParams.get('per'));
+  const initialPageSizeNum = Number(router.query.per);
   const [pageSize, setPageSize] = useState<number>(initialPageSizeNum || 25);
 
-  const page = Number(searchParams.get('page')) || 1;
+  const page = Number(router.query.page) || 1;
+
+  useEffect(() => {
+    if (router.pathname !== '/anime/[id]') {
+      if (router.query.search) {
+        updateQueryParams({
+          page: '1',
+          per: '25',
+        });
+      }
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.query.search]);
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
@@ -31,35 +43,21 @@ function Pagination({ totalPages }: PaginationProps) {
 
   const handlePageDecrement = () => {
     if (page <= 1) return;
-
-    setSearchParams((oldParams) => {
-      oldParams.set('page', (page - 1).toString());
-
-      return oldParams;
-    });
+    updateQueryParams({ page: (page - 1).toString() });
   };
 
   const handlePageIncrement = () => {
     if (page >= totalPages) return;
-
-    const newPageNum = page + 1;
-
-    setSearchParams((params) => {
-      params.set('page', newPageNum.toString());
-      return params;
-    });
+    updateQueryParams({ page: (page + 1).toString() });
   };
 
   const handlePageSizeClick = () => {
     if (pageSize < 1 || !pageSize || pageSize > 25) {
       setPageSize(25);
+      updateQueryParams({ page: String(page), per: '25' });
+    } else {
+      updateQueryParams({ page: '1', per: pageSize.toString() });
     }
-
-    setSearchParams((params) => {
-      params.set('per', pageSize.toString());
-      params.set('page', '1');
-      return params;
-    });
   };
 
   return (

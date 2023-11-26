@@ -1,51 +1,41 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
 
-import { useFetchAnimeById } from 'shared/store/jikanApi';
-import { setAnimeDetails } from 'shared/store/slice';
-import { useAppDispatch, useAppSelector } from 'shared/store/types';
+import { IAnimeDetails } from 'models/AnimeDetails.interface';
 import Button from 'ui/Button';
-import Loader from 'ui/Loader';
 
-import './AnimeDetails.css';
+import './AnimeDetails.module.css';
 
-function AnimeDetails() {
-  const dispatch = useAppDispatch();
-  const { animeDetails } = useAppSelector((state) => state.storeReducer);
-  const { pathname, search } = useLocation();
-  const animeId = pathname.slice(1);
+interface AnimeDetailsProps {
+  animeDetails: IAnimeDetails;
+}
 
-  const { data, isLoading } = useFetchAnimeById(animeId);
-  dispatch(setAnimeDetails(data?.data));
-
-  const navigate = useNavigate();
-
-  const close = () => {
-    navigate({
-      pathname: '/',
-      search,
-    });
+function AnimeDetails({ animeDetails }: AnimeDetailsProps) {
+  const router = useRouter();
+  const closeDetails = () => {
+    router.push('/');
   };
-
   return (
     <>
       <div
         aria-label="close-details"
         className="modal__overlay"
-        onClick={close}
-        onKeyDown={close}
+        onClick={closeDetails}
+        onKeyDown={closeDetails}
         role="textbox"
         tabIndex={0}
       />
       <div className="modal__container">
         <div className="loader" />
-        {isLoading && <Loader />}
-        <Button onClick={close} className="modal__close">
+        <Button onClick={closeDetails} className="modal__close">
           Close
         </Button>
-        <img
+        <Image
           className="modal__img"
           src={animeDetails?.images.webp.large_image_url}
           alt={animeDetails?.title}
+          height={100}
+          width={100}
         />
         <div className="modal__description">
           <p>{animeDetails?.title}</p>
