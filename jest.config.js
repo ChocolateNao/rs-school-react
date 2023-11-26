@@ -18,6 +18,7 @@ const customJestConfig = {
     '^assets/(.*)$': '<rootDir>/src/assets/$1',
     '^models/(.*)$': '<rootDir>/src/models/$1',
     '^tests/(.*)$': '<rootDir>/src/tests/$1',
+    '^hooks/(.*)$': '<rootDir>/src/hooks/$1',
   },
   setupFilesAfterEnv: ['<rootDir>/src/tests/setupTests.ts'],
   coverageThreshold: {
