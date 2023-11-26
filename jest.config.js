@@ -29,8 +29,8 @@ const customJestConfig = {
   collectCoverageFrom: [
     'src/**/*.ts',
     'src/**/*.tsx',
-    '!src/main.tsx',
     '!src/tests/mock/*.ts',
+    '!src/pages/_*.tsx'
   ],
   coverageReporters: ['text'],
 };
