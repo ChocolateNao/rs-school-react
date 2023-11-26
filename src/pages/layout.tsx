@@ -8,12 +8,13 @@ import Search from 'components/Search';
 import { IAnime } from 'models/Anime.interface';
 import { IPaginationData } from 'models/Pagination.interface';
 
+export const runtime = 'experimental-edge';
+
 interface LayoutProps {
   animeList: { data: IAnime[]; pagination: IPaginationData };
   children?: ReactNode;
 }
 function Layout({ children, animeList }: LayoutProps) {
-  const { data, pagination } = animeList;
   return (
     <>
       <Head>
@@ -27,8 +28,8 @@ function Layout({ children, animeList }: LayoutProps) {
           <Header>
             <Search />
           </Header>
-          <Pagination totalPages={pagination.last_visible_page} />
-          <AnimeList data={data} />
+          <Pagination totalPages={animeList.pagination.last_visible_page} />
+          <AnimeList data={animeList.data} />
         </div>
         {children}
       </main>
