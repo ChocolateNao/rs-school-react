@@ -1,6 +1,9 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import mockRouter from 'next-router-mock';
 
 import Pagination from 'components/Pagination';
+
+jest.mock('next/router', () => jest.requireActual('next-router-mock'));
 
 function AppWrapper() {
   return <Pagination totalPages={2} />;
@@ -28,26 +31,55 @@ describe('Pagination Component', () => {
     const pageSizeButton = screen.getByText(/Update page size/i);
     fireEvent.click(pageSizeButton); // to init query params
 
-    expect(window.location.search).toContain('page=1');
+    expect(mockRouter.query.page).toContain('1');
 
     const nextButton = screen.getByText(/Next/i);
-    fireEvent.click(nextButton);
+    const prevButton = screen.getByText(/Prev/i);
 
-    expect(window.location.search).toContain('page=2');
+    fireEvent.click(nextButton);
+    expect(mockRouter.query.page).toContain('2');
+
+    fireEvent.click(prevButton);
+    expect(mockRouter.query.page).toContain('1');
   });
 
   it('updates URL query parameter for quantity of items per page', () => {
     render(<AppWrapper />);
 
-    expect(window.location.search).toContain('per=25');
+    expect(mockRouter.query.per).toContain('25');
 
     const pageSizeInput = screen.getByPlaceholderText(/1 - 25/i);
     const pageSizeButton = screen.getByText(/Update page size/i);
     fireEvent.change(pageSizeInput, { target: { value: 5 } });
     fireEvent.click(pageSizeButton);
 
-    expect(window.location.search).toContain(
-      `per=${pageSizeInput.getAttribute('value')}`
-    );
+    expect(mockRouter.query.per).toContain(pageSizeInput.getAttribute('value'));
+  });
+
+  it('does not allow page size to exceed max value', () => {
+    render(<AppWrapper />);
+
+    expect(mockRouter.query.per).toContain('5');
+
+    const pageSizeInput = screen.getByPlaceholderText(/1 - 25/i);
+    const pageSizeButton = screen.getByText(/Update page size/i);
+
+    fireEvent.change(pageSizeInput, { target: { value: 6 } });
+    fireEvent.click(pageSizeButton);
+    expect(mockRouter.query.per).toContain(pageSizeInput.getAttribute('value'));
+
+    fireEvent.change(pageSizeInput, { target: { value: 50 } });
+    fireEvent.click(pageSizeButton);
+    expect(mockRouter.query.per).toContain('25');
+  });
+
+  it('does not allow page number to set value below one', () => {
+    render(<AppWrapper />);
+
+    expect(mockRouter.query.page).toContain('1');
+
+    const prevButton = screen.getByText(/Prev/i);
+    fireEvent.click(prevButton);
+    expect(mockRouter.query.page).toContain('1');
   });
 });

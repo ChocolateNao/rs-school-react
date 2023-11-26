@@ -16,7 +16,7 @@ describe('ErrorBoundary Component', () => {
 
   it('renders children when there is no error', () => {
     const { getByText } = render(
-      <ErrorBoundary>
+      <ErrorBoundary fallback={<ErrorFallback />}>
         <div>Mock child</div>
       </ErrorBoundary>
     );
@@ -30,7 +30,7 @@ describe('ErrorBoundary Component', () => {
     jest.spyOn(ErrorBoundary.prototype, 'componentDidCatch');
 
     const { getByText } = render(
-      <ErrorBoundary>
+      <ErrorBoundary fallback={<ErrorFallback />}>
         <div>Mock child</div>
         <DummyError />
       </ErrorBoundary>

@@ -8,6 +8,8 @@ jest.mock('models/Anime.interface', () => ({
   IAnime: jest.fn(),
 }));
 
+jest.mock('next/router', () => jest.requireActual('next-router-mock'));
+
 describe('AnimeCard Component', () => {
   it('renders the relevant card data', () => {
     const { getByText, getByAltText } = render(
@@ -28,6 +30,6 @@ describe('AnimeCard Component', () => {
     const { container } = render(<AnimeCard anime={mockAnimeCard} />);
 
     const link = container.querySelector('a');
-    expect(link).toHaveAttribute('href', '1');
+    expect(link).toHaveAttribute('href', 'anime/1');
   });
 });

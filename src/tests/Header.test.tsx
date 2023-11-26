@@ -1,14 +1,16 @@
 import { Provider } from 'react-redux';
 import { fireEvent, render, screen } from '@testing-library/react';
-import store from 'store/index';
 
 import ErrorBoundary from 'components/ErrorBoundary';
+import ErrorFallback from 'components/ErrorFallback';
 import Header from 'components/Header';
+
+import mockStore from './mock/reduxStoreMock';
 
 function AppWrapper() {
   return (
-    <ErrorBoundary>
-      <Provider store={store}>
+    <ErrorBoundary fallback={<ErrorFallback />}>
+      <Provider store={mockStore}>
         <Header>
           <div>Mock child</div>
         </Header>

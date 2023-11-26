@@ -1,16 +1,18 @@
 import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
-import store from 'store/index';
 
 import AnimeList from 'components/AnimeList';
 import { IAnime } from 'models/Anime.interface';
 
 import { mockAnimeList } from './mock/animeServiceMock';
+import mockStore from './mock/reduxStoreMock';
+
+jest.mock('next/router', () => jest.requireActual('next-router-mock'));
 
 describe('AnimeList Component', () => {
   it('renders specified number of cards', () => {
     const { container } = render(
-      <Provider store={store}>
+      <Provider store={mockStore}>
         <AnimeList data={mockAnimeList} />
       </Provider>
     );
@@ -23,7 +25,7 @@ describe('AnimeList Component', () => {
     const animeData: Array<IAnime> = [];
 
     const { getByText } = render(
-      <Provider store={store}>
+      <Provider store={mockStore}>
         <AnimeList data={animeData} />
       </Provider>
     );
