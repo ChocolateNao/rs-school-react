@@ -1,0 +1,23 @@
+.card {
+  border: 0.15rem solid;
+  border-radius: 1rem;
+  border-color: #646cff;
+  width: 250px;
+  min-height: 650px;
+  max-height: 650px;
+}
+
+.card__image {
+  border-radius: 1rem 1rem 0px 0px;
+}
+
+.card:hover {
+  transition: box-shadow 0.1s ease-out;
+  cursor: pointer;
+  box-shadow: 0 0 6px 1px #646cff;
+}
+
+.card__description {
+  font-size: 1rem;
+  padding: 1rem;
+}
