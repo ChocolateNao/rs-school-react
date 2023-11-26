@@ -6,16 +6,17 @@ function useUpdateQueryParams() {
   const router = useRouter();
   const prevParamsRef = useRef<ParsedUrlQuery | null>(null);
 
-  const updateQueryParams = (params: ParsedUrlQuery) => {
+  const updateQueryParams = (params: ParsedUrlQuery, path?: string) => {
     const updatedParams = { ...router.query, ...params };
     Object.keys(updatedParams).forEach((key) => {
       if (updatedParams[key] === '') {
         delete updatedParams[key];
       }
     });
+
     router.push(
       {
-        pathname: router.pathname,
+        pathname: path || router.pathname,
         query: updatedParams,
       },
       undefined
