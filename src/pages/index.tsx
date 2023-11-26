@@ -1,5 +1,9 @@
+import { useEffect } from 'react';
+import { useAppDispatch } from 'hooks/redux';
+import { Router } from 'next/router';
 import { wrapper } from 'store/index';
 import { getAnimeList, jikanApi } from 'store/jikanApi';
+import { setLoadingMainPage } from 'store/slice';
 
 import { IAnime } from 'models/Anime.interface';
 import { IPaginationData } from 'models/Pagination.interface';
@@ -11,6 +15,27 @@ export interface HomeProps {
 }
 
 export default function Home({ animeList }: HomeProps) {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const handleRouteChangeStart = () => {
+      dispatch(setLoadingMainPage(true));
+    };
+
+    const handleRouteChangeComplete = () => {
+      dispatch(setLoadingMainPage(false));
+    };
+
+    Router.events.on('routeChangeStart', handleRouteChangeStart);
+    Router.events.on('routeChangeComplete', handleRouteChangeComplete);
+
+    return () => {
+      Router.events.off('routeChangeStart', handleRouteChangeStart);
+      Router.events.off('routeChangeComplete', handleRouteChangeComplete);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return <Layout animeList={animeList} />;
 }
 
