@@ -21,7 +21,8 @@
       "styles/*": ["./src/styles/*"],
       "models/*": ["./src/models/*"],
       "ui/*": ["./src/components/ui/*"],
-      "tests/*": ["./src/tests/*"]
+      "tests/*": ["./src/tests/*"],
+      "hooks/*": ["./src/hooks/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
