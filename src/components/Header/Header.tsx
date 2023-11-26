@@ -4,7 +4,7 @@ import Link from 'next/link';
 import DummyError from 'components/DummyError';
 import Button from 'ui/Button';
 
-import './Header.module.css';
+import styles from './Header.module.css';
 
 interface HeaderProps {
   children: ReactNode;
@@ -18,12 +18,12 @@ function Header({ children }: HeaderProps) {
   };
 
   return (
-    <header className="header">
+    <header className={styles.header}>
       <Link href="/">
-        <h1 className="header__title">Anime search</h1>
+        <h1 className={styles.header__title}>Anime search</h1>
       </Link>
       {children}
-      <Button className="header__throw" onClick={handleErrorThrow}>
+      <Button className={styles.header__throw} onClick={handleErrorThrow}>
         Throw error
       </Button>
       {dummyError && <DummyError />}

@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import { IAnime } from 'models/Anime.interface';
 
-import './AnimeCard.module.css';
+import styles from './AnimeCard.module.css';
 
 interface AnimeCardProps {
   anime: IAnime;
@@ -25,15 +25,16 @@ function AnimeCard({ anime }: AnimeCardProps) {
         query: { ...router.query },
       }}
     >
-      <div className="card">
+      <div className={styles.card}>
         <Image
           src={images.webp.image_url}
           alt={title}
-          className="card__image"
-          width={100}
-          height={100}
+          className={styles.card__image}
+          width={250}
+          height={150}
+          priority
         />
-        <div className="card__description">
+        <div className={styles.card__description}>
           <b>Name:</b> <p>{title}</p>
           <b>Status:</b> <p>{airing ? 'Airing' : 'Completed'}</p>
           <b>Score:</b> <p>{score}</p>

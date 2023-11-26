@@ -1,7 +1,7 @@
 import AnimeCard from 'components/AnimeCard';
 import { IAnime } from 'models/Anime.interface';
 
-import './AnimeList.module.css';
+import styles from './AnimeList.module.css';
 
 interface AnimeListProps {
   data: IAnime[];
@@ -9,7 +9,7 @@ interface AnimeListProps {
 
 function AnimeList({ data }: AnimeListProps) {
   return (
-    <section className="cards">
+    <section className={styles.cards}>
       {data.length === 0 ? (
         <div>Nothing was found that satisfies your desires, master</div>
       ) : (

@@ -6,7 +6,7 @@ import { setUserInput } from 'store/slice';
 
 import Button from 'ui/Button';
 
-import './Search.module.css';
+import styles from './Search.module.css';
 
 function Search() {
   const dispatch = useAppDispatch();
@@ -49,16 +49,16 @@ function Search() {
   };
 
   return (
-    <section className="search">
+    <section className={styles.search}>
       <input
-        className="search__input"
+        className={styles.search__input}
         type="text"
         placeholder="Type an anime title"
         value={userInput}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
       />
-      <Button className="search__btn" onClick={handleSearch}>
+      <Button className={styles.search__btn} onClick={handleSearch}>
         Search
       </Button>
     </section>

@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import Button from 'ui/Button';
 
-import './Pagination.module.css';
+import styles from './Pagination.module.css';
 
 interface PaginationProps {
   totalPages: number;
@@ -21,10 +21,10 @@ function Pagination({ totalPages }: PaginationProps) {
 
   useEffect(() => {
     if (router.pathname !== '/anime/[id]') {
-      if (router.query.search) {
+      if (router.query.page && router.query.page > String(totalPages)) {
         updateQueryParams({
           page: '1',
-          per: '25',
+          per: router.query.per || '25',
         });
       }
     }
@@ -61,21 +61,21 @@ function Pagination({ totalPages }: PaginationProps) {
   };
 
   return (
-    <div className="pagination">
-      <div className="pagination__navigation">
+    <div className={styles.pagination}>
+      <div className={styles.pagination__navigation}>
         <Button
-          className="pagination__navigation_btn"
+          className={styles.pagination__navigation_btn}
           type="button"
           onClick={handlePageDecrement}
           disabled={page <= 1}
         >
           Previous
         </Button>
-        <span className="pagination__page-info">
+        <span className={styles.pagination__page_info}>
           {page} / {totalPages}
         </span>
         <Button
-          className="pagination__navigation_btn"
+          className={styles.pagination__navigation_btn}
           type="button"
           onClick={handlePageIncrement}
           disabled={page >= totalPages}
@@ -83,18 +83,18 @@ function Pagination({ totalPages }: PaginationProps) {
           Next
         </Button>
       </div>
-      <div className="pagination__pagesize">
+      <div className={styles.pagination__pagesize}>
         Items on page (1-25):
         <div>
           <input
-            className="pagination__pagesize_input"
+            className={styles.pagination__pagesize_input}
             onChange={onInputChange}
             placeholder="1 - 25"
             type="text"
             value={pageSize}
           />
           <Button
-            className="pagination__pagesize_update"
+            className={styles.pagination__pagesize_update}
             type="button"
             onClick={handlePageSizeClick}
           >

@@ -1,14 +1,14 @@
 import Button from 'ui/Button';
 
-import './ErrorFallback.module.css';
+import styles from './ErrorFallback.module.css';
 
 function ErrorFallback() {
   return (
-    <div className="errorboundary">
-      <h1 className="errorboundary__header">
+    <div className={styles.errorboundary}>
+      <h1 className={styles.errorboundary__header}>
         Oopsie Woopsie! Something went wrong.
       </h1>
-      <p className="errorboundary__text">
+      <p className={styles.errorboundary__text}>
         You can try to refresh the page or simply click the button here that
         will do it for you.
       </p>
