@@ -9,7 +9,7 @@ import { API_URL } from './jikanApi';
 const initialState: IAppInititalState = {
   animeList: [] as IAnime[],
   animeDetails: {} as IAnimeDetails,
-  userInput: (localStorage.getItem('userInput') as string) ?? '',
+  userInput: '',
   pagination: {
     last_visible_page: 1,
     has_next_page: false,
@@ -41,7 +41,6 @@ export const Slice = createSlice({
     },
     setUserInput(state, action) {
       state.userInput = action.payload;
-      localStorage.setItem('userInput', action.payload);
     },
     setPagination(state, action) {
       state.pagination = action.payload;

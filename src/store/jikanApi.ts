@@ -18,17 +18,22 @@ export const jikanApi = createApi({
     }
   },
   endpoints: (builder) => ({
-    fetchAnimeList: builder.query<
+    getAnimeList: builder.query<
       { data: IAnime[]; pagination: IPaginationData },
       string | null
     >({
       query: (querystring: string | null) => `${API_URL}${querystring}`,
     }),
-    fetchAnimeById: builder.query<{ data: IAnimeDetails }, number | string>({
+    getAnimeById: builder.query<{ data: IAnimeDetails }, number | string>({
       query: (id) => `${API_URL}/${id}`,
     }),
   }),
 });
 
-export const useFetchAnimeList = jikanApi.endpoints.fetchAnimeList.useQuery;
-export const useFetchAnimeById = jikanApi.endpoints.fetchAnimeById.useQuery;
+export const {
+  useGetAnimeByIdQuery,
+  useGetAnimeListQuery,
+  util: { getRunningQueriesThunk },
+} = jikanApi;
+
+export const { getAnimeById, getAnimeList } = jikanApi.endpoints;
