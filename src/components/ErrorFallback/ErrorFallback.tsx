@@ -1,6 +1,6 @@
 import Button from 'ui/Button';
 
-import './ErrorFallback.css';
+import './ErrorFallback.module.css';
 
 function ErrorFallback() {
   return (
