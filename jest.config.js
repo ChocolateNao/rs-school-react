@@ -30,7 +30,8 @@ const customJestConfig = {
     'src/**/*.ts',
     'src/**/*.tsx',
     '!src/tests/mock/*.ts',
-    '!src/pages/_*.tsx'
+    '!src/pages/_*.tsx',
+    '!src/pages/index.tsx'
   ],
   coverageReporters: ['text'],
 };
