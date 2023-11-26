@@ -1,18 +1,13 @@
-:root {
-  --card-img-size: 250px;
-}
-
 .card {
   border: 0.15rem solid;
   border-radius: 1rem;
   border-color: #646cff;
-  max-height: var(--card-img-size);
-  max-width: var(--card-img-size);
-  min-height: 600px;
+  width: 250px;
+  min-height: 650px;
+  max-height: 650px;
 }
 
 .card__image {
-  width: var(--card-img-size);
   border-radius: 1rem 1rem 0px 0px;
 }
 
