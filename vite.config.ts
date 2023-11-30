@@ -7,13 +7,13 @@ export default defineConfig({
   resolve: {
     alias: {
       components: path.resolve(__dirname, './src/components'),
-      ui: path.resolve(__dirname, './src/shared/ui'),
+      ui: path.resolve(__dirname, './src/components/ui'),
       api: path.resolve(__dirname, './src/api'),
       pages: path.resolve(__dirname, './src/pages'),
       assets: path.resolve(__dirname, './src/assets'),
-      resources: path.resolve(__dirname, './src/resources'),
+      models: path.resolve(__dirname, './src/models'),
       shared: path.resolve(__dirname, './src/shared'),
-      context: path.resolve(__dirname, './src/shared/context'),
+      store: path.resolve(__dirname, './src/store'),
     },
   },
   plugins: [react()],
