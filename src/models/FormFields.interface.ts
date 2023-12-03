@@ -1,14 +1,13 @@
-import ICountry from 'models/Country.interface';
-
-export type TGender = 'Male' | 'Female' | 'Custom';
+export type TGender = 'Male' | 'Female' | 'Other';
 
 export default interface IFormFields {
   name: string;
   age: number;
   email: string;
   password: string;
-  passwordRepeat: string;
+  confirmPassword: string;
   gender: TGender;
   isTermAccepted: boolean;
-  country: ICountry;
+  // picture: ;
+  // countryCode: string;
 }
