@@ -4,11 +4,11 @@ import countriesData from 'assets/countriesData';
 import ICountry from 'models/Country.interface';
 
 interface CountriesState {
-  countries: ICountry[];
+  countriesArr: ICountry[];
 }
 
 const initialState: CountriesState = {
-  countries: { ...countriesData },
+  countriesArr: [...countriesData],
 };
 
 const countriesSlice = createSlice({
@@ -16,7 +16,7 @@ const countriesSlice = createSlice({
   initialState,
   reducers: {
     addCountry: (state, action: PayloadAction<ICountry>) => {
-      state.countries.push(action.payload);
+      state.countriesArr.push(action.payload);
     },
   },
 });

@@ -54,7 +54,10 @@ const yupFormSchema: yup.ObjectSchema<IFormFields> = yup.object().shape({
   //       value && (value.type === 'image/png' || value.type === 'image/jpeg')
   //   )
   //   .required('You have to upload a file'),
-  // countryCode: yup.string().required('Country is required'),
+  country: yup
+    .string()
+    .min(2, 'Please select a valid country')
+    .required('Country is required'),
 });
 
 export default yupFormSchema;

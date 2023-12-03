@@ -9,5 +9,5 @@ export default interface IFormFields {
   gender: TGender;
   isTermAccepted: boolean;
   // picture: ;
-  // countryCode: string;
+  country: string;
 }
