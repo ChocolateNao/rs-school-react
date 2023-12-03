@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
+import countriesDataSlice from './slices/countriesDataSlice';
 import formDataSlice from './slices/formDataSlice';
 import loadingSlice from './slices/loadingSlice';
 
 const rootReducer = combineReducers({
   formData: formDataSlice,
+  countries: countriesDataSlice,
   loading: loadingSlice,
 });
 
