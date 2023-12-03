@@ -8,11 +8,11 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
-import ControlledForm from 'components/ControlledForm';
 import ErrorBoundary from 'components/ErrorBoundary';
 import ErrorFallback from 'components/ErrorFallback';
-import UncontrolledForm from 'components/UncontrolledForm/UncontrolledForm';
+import ControlledFormPage from 'pages/ControlledFormPage';
 import NotFound from 'pages/NotFound';
+import UncontrolledFormPage from 'pages/UncontrolledFormPage';
 import store from 'store/store';
 
 import App from './App';
@@ -22,10 +22,9 @@ import './index.scss';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route path="/" element={<App />} errorElement={<ErrorFallback />}>
-        <Route path="/controlled" element={<ControlledForm />} />
-        <Route path="/uncontrolled" element={<UncontrolledForm />} />
-      </Route>
+      <Route path="/" element={<App />} errorElement={<ErrorFallback />} />
+      <Route path="/controlled" element={<ControlledFormPage />} />
+      <Route path="/uncontrolled" element={<UncontrolledFormPage />} />
       <Route path="*" element={<NotFound />} errorElement={<ErrorFallback />} />
     </Route>
   )

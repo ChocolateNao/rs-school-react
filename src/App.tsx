@@ -1,5 +1,4 @@
 /* eslint-disable react/no-array-index-key */
-import { Outlet } from 'react-router-dom';
 import { useAppSelector } from 'hooks/redux';
 
 import FormResult from 'components/FormResult';
@@ -63,7 +62,6 @@ function App() {
           </section>
         </>
       )}
-      <Outlet />
     </>
   );
 }
