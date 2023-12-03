@@ -2,12 +2,15 @@ import { FormEvent, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from 'hooks/redux';
+import convertToBase64 from 'utils/base64';
 import { ValidationError } from 'yup';
 
 import CountrySelector from 'components/CountrySelector';
 import IFormFields from 'models/FormFields.interface';
 import yupFormSchema from 'models/YupSchema';
 import { appendUncontrolledFormData } from 'store/slices/formDataSlice';
+
+import styles from './UncontrolledForm.module.scss';
 
 interface FormErrors {
   name?: string;
@@ -17,7 +20,7 @@ interface FormErrors {
   confirmPassword?: string;
   gender?: string;
   isTermAccepted?: string;
-  // picture?: string;
+  picture?: string;
   country?: string;
 }
 
@@ -38,9 +41,9 @@ function UncontrolledForm() {
   const passwordRef = useRef<HTMLInputElement>(null);
   const confirmPasswordRef = useRef<HTMLInputElement>(null);
   const isTermAcceptedRef = useRef<HTMLInputElement>(null);
-  // const pictureRef = useRef<HTMLInputElement>(null);
+  const pictureRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     yupFormSchema
       .validate(
@@ -52,13 +55,27 @@ function UncontrolledForm() {
           confirmPassword: confirmPasswordRef.current?.value,
           gender: selectedRadioValue,
           isTermAccepted: isTermAcceptedRef.current?.checked,
-          // picture: pictureRef.current.value,
+          picture: pictureRef.current?.files,
           country: selectedCountry,
         },
         { abortEarly: false }
       )
-      .then((validatedData: IFormFields) => {
+      .then(async (validatedData: IFormFields) => {
         setErrors({});
+        if (
+          pictureRef.current?.files &&
+          pictureRef.current?.files?.length > 0
+        ) {
+          const base64String = await convertToBase64(
+            pictureRef.current?.files[0]
+          );
+          dispatch(
+            appendUncontrolledFormData({
+              ...validatedData,
+              picture: base64String,
+            })
+          );
+        }
         dispatch(appendUncontrolledFormData(validatedData));
         navigate('/');
       })
@@ -78,7 +95,7 @@ function UncontrolledForm() {
   const countriesData = useAppSelector((state) => state.countries.countriesArr);
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.form}>
       <h2 className="form__header">Unontrolled Form</h2>
       <label htmlFor="name">
         Name
@@ -121,6 +138,7 @@ function UncontrolledForm() {
           id="password"
           type="password"
           placeholder="Enter your password"
+          className={styles.input__password}
         />
       </label>
       {errors.password && <p>{errors.password}</p>}
@@ -132,6 +150,7 @@ function UncontrolledForm() {
           id="passwordRepeat"
           type="password"
           placeholder="Confirm your password"
+          className={styles.input__password}
         />
       </label>
       {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
@@ -178,23 +197,6 @@ function UncontrolledForm() {
         {errors.gender && <p>{errors.gender}</p>}
       </fieldset>
 
-      <label htmlFor="isTermAccepted">
-        Accept terms and conditions
-        <input ref={isTermAcceptedRef} id="isTermAccepted" type="checkbox" />
-      </label>
-      {errors.isTermAccepted && <p>{errors.isTermAccepted}</p>}
-
-      {/* <label htmlFor="picture">
-      Upload Picture
-      <input
-        ref={pictureRef}
-        type="file"
-        id="picture"
-        onChange={handleFileChange}
-      />
-    </label>
-    {errors.picture && <p>{errors.picture}</p>} */}
-
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label htmlFor="country">
         Select a country
@@ -205,8 +207,19 @@ function UncontrolledForm() {
           }
         />
       </label>
-
       {errors.country && <p>{errors.country}</p>}
+
+      <label htmlFor="picture">
+        Upload Picture
+        <input ref={pictureRef} type="file" id="picture" />
+      </label>
+      {errors.picture && <p>{errors.picture}</p>}
+
+      <label htmlFor="isTermAccepted">
+        Accept terms and conditions
+        <input ref={isTermAcceptedRef} id="isTermAccepted" type="checkbox" />
+      </label>
+      {errors.isTermAccepted && <p>{errors.isTermAccepted}</p>}
 
       <button type="submit">Submit</button>
     </form>

@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from 'react';
 
 import ICountry from 'models/Country.interface';
 
-import './CountrySelector.scss';
+import styles from './CountrySelector.module.scss';
 
 interface CountrySelectorProps {
   countries: ICountry[];
@@ -44,7 +44,7 @@ function CountrySelector({ countries, onSelect }: CountrySelectorProps) {
   };
 
   return (
-    <div className="country-selector">
+    <div className={styles.countryselector}>
       <input
         type="text"
         id="country"
@@ -55,7 +55,7 @@ function CountrySelector({ countries, onSelect }: CountrySelectorProps) {
         placeholder="Type a country"
       />
       {isFocused && suggestions.length > 0 && (
-        <ul className="suggestions">
+        <ul className={styles.countryselector__suggestions}>
           {suggestions.map((country) => (
             // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
             <li

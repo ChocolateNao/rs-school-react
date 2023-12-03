@@ -8,6 +8,6 @@ export default interface IFormFields {
   confirmPassword: string;
   gender: TGender;
   isTermAccepted: boolean;
-  // picture: ;
+  picture: FileList;
   country: string;
 }

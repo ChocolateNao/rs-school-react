@@ -3,11 +3,15 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useAppSelector } from 'hooks/redux';
+import convertToBase64 from 'utils/base64';
 
 import CountrySelector from 'components/CountrySelector';
+import PasswordStrengthMeter from 'components/PasswordStrengthMeter/PasswordStrengthMeter';
 import IFormFields from 'models/FormFields.interface';
 import yupFormSchema from 'models/YupSchema';
 import { appendControlledFormData } from 'store/slices/formDataSlice';
+
+import styles from './ControlledForm.module.scss';
 
 function ControlledForm() {
   const dispatch = useDispatch();
@@ -15,10 +19,11 @@ function ControlledForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isDirty },
     reset,
     setValue,
     control,
+    getValues,
   } = useForm<IFormFields>({
     resolver: yupResolver(yupFormSchema),
     mode: 'onChange',
@@ -26,22 +31,11 @@ function ControlledForm() {
 
   const countriesData = useAppSelector((state) => state.countries.countriesArr);
 
-  // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const file = e.target.files && e.target.files[0];
-  //   if (file) {
-  //     setValue('picture', file);
-  //   }
-  // };
-
-  const onSubmitHandler = (data: IFormFields) => {
-    // const reader = new FileReader();
-    // reader.onload = (event) => {
-    //   if (event.target !== null) {
-    //     const base64String = event.target.result;
-    //     dispatch(addUserAction({ ...data, picture: base64String }));
-    //   }
-    // };
-    // reader.readAsDataURL(data.picture);
+  const onSubmitHandler = async (data: IFormFields) => {
+    if (data.picture && data.picture.length > 0) {
+      const base64String = await convertToBase64(data.picture[0]);
+      dispatch(appendControlledFormData({ ...data, picture: base64String }));
+    }
 
     dispatch(appendControlledFormData(data));
     reset();
@@ -49,8 +43,8 @@ function ControlledForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmitHandler)}>
-      <h2 className="form__header">Controlled Form</h2>
+    <form onSubmit={handleSubmit(onSubmitHandler)} className={styles.form}>
+      <h2>Controlled Form</h2>
       <label htmlFor="name">
         Name
         <input
@@ -92,8 +86,10 @@ function ControlledForm() {
           id="password"
           type="password"
           placeholder="Enter your password"
+          className={styles.input__password}
         />
       </label>
+      <PasswordStrengthMeter password={getValues('password')} />
       <p>{errors.password?.message}</p>
 
       <label htmlFor="passwordRepeat">
@@ -103,6 +99,7 @@ function ControlledForm() {
           id="passwordRepeat"
           type="password"
           placeholder="Confirm your password"
+          className={styles.input__password}
         />
       </label>
       <p>{errors.confirmPassword?.message}</p>
@@ -146,26 +143,11 @@ function ControlledForm() {
         <p>{errors.gender?.message}</p>
       </fieldset>
 
-      <label htmlFor="isTermAccepted">
-        Accept terms and conditions
-        <input
-          {...register('isTermAccepted')}
-          id="isTermAccepted"
-          type="checkbox"
-        />
-      </label>
-      <p>{errors.isTermAccepted?.message}</p>
-
-      {/* <label htmlFor="picture">
+      <label htmlFor="picture">
         Upload Picture
-        <input
-          {...register('picture')}
-          type="file"
-          id="picture"
-          onChange={handleFileChange}
-        />
+        <input type="file" id="picture" {...register('picture')} />
       </label>
-      <p>{errors.picture?.message}</p> */}
+      <p>{errors.picture?.message}</p>
 
       <div>
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
@@ -188,7 +170,17 @@ function ControlledForm() {
         <p>{errors.country?.message}</p>
       </div>
 
-      <button type="submit" disabled={!isValid}>
+      <label htmlFor="isTermAccepted">
+        Accept terms and conditions
+        <input
+          {...register('isTermAccepted')}
+          id="isTermAccepted"
+          type="checkbox"
+        />
+      </label>
+      <p>{errors.isTermAccepted?.message}</p>
+
+      <button type="submit" disabled={!isValid || !isDirty}>
         Submit
       </button>
     </form>

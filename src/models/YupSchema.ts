@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import * as yup from 'yup';
 
 import IFormFields, { TGender } from 'models/FormFields.interface';
@@ -23,8 +24,9 @@ const yupFormSchema: yup.ObjectSchema<IFormFields> = yup.object().shape({
   password: yup
     .string()
     .min(4, 'Password should contain at least four characters')
+    .max(64, 'Password should contain only up to 64 characters')
     .matches(
-      /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[\W_]).{8,}$/,
+      /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[\W_]).{4,}$/,
       'Password must contain at least 1 number, 1 uppercased letter, 1 lowercased letter, 1 special character'
     )
     .required('Password is required'),
@@ -40,24 +42,34 @@ const yupFormSchema: yup.ObjectSchema<IFormFields> = yup.object().shape({
     .boolean()
     .oneOf([true], 'You must accept the terms and conditions')
     .required(),
-  // picture: yup
-  //   .mixed()
-  //   .test(
-  //     'fileSize',
-  //     'File Size is too large',
-  //     (value) => value && value.size <= 1000000
-  //   )
-  //   .test(
-  //     'fileType',
-  //     'Invalid File Format',
-  //     (value) =>
-  //       value && (value.type === 'image/png' || value.type === 'image/jpeg')
-  //   )
-  //   .required('You have to upload a file'),
+  picture: yup
+    .mixed<FileList>()
+    .test('fileExist', 'Please upload picture', (file) => {
+      return !!file && !!file[0];
+    })
+    .test(
+      'fileFormat',
+      'The file is in wrong format. Only JPEG and PNG are allowed',
+      (file) => {
+        if (file && file[0]) {
+          return (
+            (file && file[0].type === 'image/jpeg') ||
+            (file && file[0].type === 'image/png')
+          );
+        }
+      }
+    )
+    .test('fileSize', 'The file is too large (up to 3mb)', (file) => {
+      if (file && file[0]) {
+        return file && file[0].size <= 3000000;
+      }
+    })
+    .defined()
+    .required('You should upload a picture'),
   country: yup
     .string()
     .min(2, 'Please select a valid country')
-    .required('Country is required'),
+    .required('Country is required. Please select one from the dropdown menu'),
 });
 
 export default yupFormSchema;
