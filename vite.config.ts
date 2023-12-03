@@ -14,6 +14,7 @@ export default defineConfig({
       models: path.resolve(__dirname, './src/models'),
       shared: path.resolve(__dirname, './src/shared'),
       store: path.resolve(__dirname, './src/store'),
+      hooks: path.resolve(__dirname, './src/hooks'),
     },
   },
   plugins: [react()],
