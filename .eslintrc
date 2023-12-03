@@ -40,7 +40,7 @@
     "react/display-name": "off",
     "@typescript-eslint/no-shadow": "off",
     "no-shadow": "off",
-    "no-console": ["error", { "allow": ["error"] }],
+    "no-console": ["warn", { "allow": ["error"] }],
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/ban-ts-comment": "error",
     "@typescript-eslint/no-non-null-assertion": "off",
@@ -60,6 +60,7 @@
       "error",
       { "props": true, "ignorePropertyModificationsFor": ["state"] }
     ],
+    "react/jsx-props-no-spreading": ["error", { "html": "ignore" }],
     "prettier/prettier": "error"
   },
   "overrides": [
@@ -74,7 +75,7 @@
               ["^react", "^@?\\w"],
               // Internal packages (ALIASES ARE HERE).
               [
-                "^(components|ui|context|api|pages|assets|resources|shared|models|styles)(/.*|$)"
+                "^(components|ui|context|api|pages|assets|resources|shared|models|styles|store)(/.*|$)"
               ],
               // Side effect imports.
               ["^\\u0000"],

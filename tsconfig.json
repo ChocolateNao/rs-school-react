@@ -25,7 +25,8 @@
       "assets/*": ["./assets/*"],
       "models/*": ["./models/*"],
       "shared/*": ["./shared/*"],
-      "store/*": ["./store/*"]
+      "store/*": ["./store/*"],
+      "hooks/*": ["./hooks/*"]
     }
   },
   "include": ["src"],
