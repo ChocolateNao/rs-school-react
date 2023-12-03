@@ -21,21 +21,47 @@ function App() {
     <>
       <Header />
       {controlledFormData.length > 0 && (
-        <div>
-          <h2>Controlled Form Data</h2>
-          {controlledFormData.map((formData, index) => (
-            <FormResult key={index} data={formData as unknown as ResultData} />
-          ))}
-        </div>
+        <>
+          <h2 style={{ fontSize: '20px' }}>Controlled Form Data</h2>
+          <section
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              gap: '20px',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            {controlledFormData.map((formData, index) => (
+              <FormResult
+                key={index}
+                data={formData as unknown as ResultData}
+              />
+            ))}
+          </section>
+        </>
       )}
 
       {uncontrolledFormData.length > 0 && (
-        <div>
-          <h2>Uncontrolled Form Data</h2>
-          {uncontrolledFormData.map((formData, index) => (
-            <FormResult key={index} data={formData as unknown as ResultData} />
-          ))}
-        </div>
+        <>
+          <h2 style={{ fontSize: '20px' }}>Uncontrolled Form Data</h2>
+          <section
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              gap: '20px',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            {uncontrolledFormData.map((formData, index) => (
+              <FormResult
+                key={index}
+                data={formData as unknown as ResultData}
+              />
+            ))}
+          </section>
+        </>
       )}
       <Outlet />
     </>

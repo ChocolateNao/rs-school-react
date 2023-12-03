@@ -33,11 +33,12 @@ function ControlledForm() {
 
   const onSubmitHandler = async (data: IFormFields) => {
     if (data.picture && data.picture.length > 0) {
-      const base64String = await convertToBase64(data.picture[0]);
-      dispatch(appendControlledFormData({ ...data, picture: base64String }));
+      const base64String = await convertToBase64(data.picture[0] as File);
+      // eslint-disable-next-line no-param-reassign
+      data = { ...data, picture: base64String };
+      dispatch(appendControlledFormData(data));
     }
 
-    dispatch(appendControlledFormData(data));
     reset();
     navigate('/');
   };

@@ -75,14 +75,10 @@ function UncontrolledForm() {
           const base64String = await convertToBase64(
             pictureRef.current?.files[0]
           );
-          dispatch(
-            appendUncontrolledFormData({
-              ...validatedData,
-              picture: base64String,
-            })
-          );
+          // eslint-disable-next-line no-param-reassign
+          validatedData = { ...validatedData, picture: base64String };
+          dispatch(appendUncontrolledFormData(validatedData));
         }
-        dispatch(appendUncontrolledFormData(validatedData));
         navigate('/');
       })
       .catch((validationErrors: ValidationError) => {
