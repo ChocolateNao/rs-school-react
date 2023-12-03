@@ -6,7 +6,7 @@ import { useAppSelector } from 'hooks/redux';
 import convertToBase64 from 'utils/base64';
 
 import CountrySelector from 'components/CountrySelector';
-import PasswordStrengthMeter from 'components/PasswordStrengthMeter/PasswordStrengthMeter';
+import PasswordStrengthMeter from 'components/PasswordStrengthMeter';
 import IFormFields from 'models/FormFields.interface';
 import yupFormSchema from 'models/YupSchema';
 import { appendControlledFormData } from 'store/slices/formDataSlice';

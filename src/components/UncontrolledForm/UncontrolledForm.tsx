@@ -1,4 +1,4 @@
-import { FormEvent, useRef, useState } from 'react';
+import { ChangeEvent, FormEvent, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from 'hooks/redux';
@@ -6,6 +6,7 @@ import convertToBase64 from 'utils/base64';
 import { ValidationError } from 'yup';
 
 import CountrySelector from 'components/CountrySelector';
+import PasswordStrengthMeter from 'components/PasswordStrengthMeter';
 import IFormFields from 'models/FormFields.interface';
 import yupFormSchema from 'models/YupSchema';
 import { appendUncontrolledFormData } from 'store/slices/formDataSlice';
@@ -29,10 +30,15 @@ function UncontrolledForm() {
   const navigate = useNavigate();
   const [errors, setErrors] = useState({} as FormErrors);
   const [selectedRadioValue, setSelectedRadioValue] = useState('');
+  const [password, setPassword] = useState('');
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
 
   const handleRadioChange = (value: string) => {
     setSelectedRadioValue(value);
+  };
+
+  const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
   };
 
   const nameRef = useRef<HTMLInputElement>(null);
@@ -139,8 +145,10 @@ function UncontrolledForm() {
           type="password"
           placeholder="Enter your password"
           className={styles.input__password}
+          onChange={handlePasswordChange}
         />
       </label>
+      <PasswordStrengthMeter password={password} />
       {errors.password && <p>{errors.password}</p>}
 
       <label htmlFor="passwordRepeat">
