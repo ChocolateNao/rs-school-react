@@ -18,6 +18,9 @@ function FormResult({ data }: CardProps) {
         <p className={styles.card__title}>Password: {data.password}</p>
         <p className={styles.card__title}>Gender: {data.gender}</p>
         <p className={styles.card__title}>Country: {data.country}</p>
+        <p className={styles.card__title}>
+          Terms: {data.isTermAccepted ? 'Accepted' : 'Declined'}
+        </p>
       </div>
       <img
         src={data.picture}
