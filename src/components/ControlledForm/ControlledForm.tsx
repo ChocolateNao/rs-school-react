@@ -24,7 +24,6 @@ function ControlledForm() {
     mode: 'onChange',
   });
 
-  // eslint-disable-next-line react-redux/useSelector-prefer-selectors
   const countriesData = useAppSelector((state) => state.countries.countriesArr);
 
   // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {

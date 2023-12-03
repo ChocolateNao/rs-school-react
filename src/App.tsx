@@ -7,11 +7,10 @@ import Header from 'components/Header';
 import './App.scss';
 
 function App() {
-  // eslint-disable-next-line react-redux/useSelector-prefer-selectors
   const controlledFormData = useAppSelector(
     (state) => state.formData.controlledFormData
   );
-  // eslint-disable-next-line react-redux/useSelector-prefer-selectors
+
   const uncontrolledFormData = useAppSelector(
     (state) => state.formData.uncontrolledFormData
   );
